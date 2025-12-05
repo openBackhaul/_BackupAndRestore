@@ -2,7 +2,7 @@ The system periodically creates configuration backups for network devices and st
 The restore process allows operators to revert a device to its last known good configuration, but it is typically service-affecting and performed on a single device at a time to minimize risk.
  
 ### Scope
-The current Backup and Restore Management is to be replaced by a set of microservices for implementing autonomous backup management of config data and an open-source tool (to be provided by TechM) for managing restore operations.
+The current Backup and Restore Management is to be replaced by a set of microservices for implementing autonomous backup management of config data and an open-source tool for managing restore operations.
  
 The following scope is currently discussed between the ToolStream (consumers) and the InterfaceStream (MW SDN domain) for Backup and Restore Management project:
 - Implement a Backup scheduler to create backup tasks for multiple active devices, along with a task window for monitoring scheduled backup jobs.
@@ -26,11 +26,10 @@ The following scope is currently discussed between the ToolStream (consumers) an
 The following components are required for implementing the _BackupAndRestore UserDemand:
 ### New Applications:
 -	Microservice-based Backup Management System.
--	New Backup and Restore Management (provided by TechM).
--	Task Scheduler for backup operations.
+-	User Interface for BackupAndRestore Management, Task Scheduler.
 ### To be Updated Applications:
--	Inventory Management System for auto-sync with SDN controller.
--	Replacement Tool for parameter verification and updates.
+-	MicroWaveDeviceInventory.
+-	MicroWaveDeviceGatekeeper.
 ### Dependencies on On-going Implementations:
 -	SDN Controller integration for device status and parameter sync.
 -	Planning Tool integration for onboarding device data.
