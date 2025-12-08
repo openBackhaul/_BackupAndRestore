@@ -1,6 +1,8 @@
+# _BackupAndRestore
+
 The system periodically creates configuration backups for network devices and stores them in the database, enabling quick recovery in case of failures, misconfigurations, or disasters. It also provides features like backup scheduling, retention policies (e.g., storing the last few backups).
 The restore process allows operators to revert a device to its last known good configuration, but it is typically service-affecting and performed on a single device at a time to minimize risk.
- 
+
 ### Scope
 The current Backup and Restore Management is to be replaced by a set of microservices for implementing autonomous backup management of config data and an open-source tool for managing restore operations.
  
@@ -22,16 +24,21 @@ The following scope is currently discussed between the ToolStream (consumers) an
 -	Support for non-SDN devices.
 -	Any enhancements outside MW SDN domain integration.
 
+### Detailed Requirements
+See [detailed list of requirements](../../issues) in the issues section.
+
 ### Components
 The following components are required for implementing the _BackupAndRestore UserDemand:
+
 ### New Applications:
 -	Microservice-based Backup Management System.
 -	User Interface for BackupAndRestore Management, Task Scheduler.
+
 ### To be Updated Applications:
 -	MicroWaveDeviceInventory.
 -	MicroWaveDeviceGatekeeper.
+
 ### Dependencies on On-going Implementations:
 -	SDN Controller integration for device status and parameter sync.
 -	Planning Tool integration for onboarding device data.
 -	External repository connectivity for backup storage.
-
