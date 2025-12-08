@@ -3,6 +3,9 @@
 The system periodically creates configuration backups for network devices and stores them in the database, enabling quick recovery in case of failures, misconfigurations, or disasters. It also provides features like backup scheduling, retention policies (e.g., storing the last few backups).
 The restore process allows operators to revert a device to its last known good configuration, but it is typically service-affecting and performed on a single device at a time to minimize risk.
 
+### Driver  
+Replacement of ComarchOSS  
+
 ### Scope
 The current Backup and Restore Management is to be replaced by a set of microservices for implementing autonomous backup management of config data and an open-source tool for managing restore operations.
  
@@ -25,10 +28,11 @@ The following scope is currently discussed between the ToolStream (consumers) an
 -	Any enhancements outside MW SDN domain integration.
 
 ### Detailed Requirements
-See [detailed list of requirements](../../issues) in the issues section.
+See [detailed list of requirements](../../issues) in the issues section.  
 
 ### Components
 The following components are required for implementing the _BackupAndRestore UserDemand:
+- _to be designed_
 
 ### New Applications:
 -	Microservice-based Backup Management System.
