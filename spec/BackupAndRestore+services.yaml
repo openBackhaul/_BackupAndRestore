@@ -1,0 +1,342 @@
+servers:
+
+  operation-servers:
+    own-oam:
+      basic:
+        - operation-name: /v1/register-yourself
+          uuid: bar-1-0-0-op-s-bm-000
+        - operation-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+        - operation-name: /v1/redirect-service-request-information
+          uuid: bar-1-0-0-op-s-bm-002
+        - operation-name: /v1/redirect-oam-request-information
+          uuid: bar-1-0-0-op-s-bm-003
+        - operation-name: /v1/end-subscription
+          uuid: bar-1-0-0-op-s-bm-004
+        - operation-name: /v1/inquire-oam-request-approvals
+          uuid: bar-1-0-0-op-s-bm-005
+        - operation-name: /v1/update-client
+          uuid: bar-1-0-0-op-s-bm-007
+        - operation-name: /v1/list-ltps-and-fcs
+          uuid: bar-1-0-0-op-s-bm-008
+        - operation-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+        - operation-name: /v1/update-operation-key
+          uuid: bar-1-0-0-op-s-bm-010
+        - operation-name: /v1/update-operation-client
+          uuid: bar-1-0-0-op-s-bm-011
+        - operation-name: /v1/inquire-basic-auth-approvals
+          uuid: bar-1-0-0-op-s-bm-012
+        - operation-name: /v1/dispose-remainders-of-deregistered-application
+          uuid: bar-1-0-0-op-s-bm-013
+        - operation-name: /v1/inform-about-preceding-release
+          uuid: bar-1-0-0-op-s-bm-014
+        - operation-name: /v1/update-client-of-subsequent-release
+          uuid: bar-1-0-0-op-s-bm-015
+      individual:
+        - operation-name: /v1/bequeath-your-data-and-die
+          uuid: bar-1-0-0-op-s-im-000
+    service:
+      basic:
+        - operation-name: /v1/start-application-in-generic-representation
+          uuid: bar-1-0-0-op-s-bs-000
+          operation-key: n.a.
+        - operation-name: /v1/inform-about-application
+          uuid: bar-1-0-0-op-s-bs-001
+          operation-key: n.a.
+        - operation-name: /v1/inform-about-application-in-generic-representation
+          uuid: bar-1-0-0-op-s-bs-002
+          operation-key: n.a.
+        - operation-name: /v1/inform-about-release-history
+          uuid: bar-1-0-0-op-s-bs-003
+          operation-key: n.a.
+        - operation-name: /v1/inform-about-release-history-in-generic-representation
+          uuid: bar-1-0-0-op-s-bs-004
+          operation-key: n.a.
+        - operation-name: /docs
+          uuid: bar-1-0-0-op-s-bs-005
+          operation-key: n.a.
+      individual:
+        - operation-name: /v1/start-gui
+          uuid: bar-1-0-0-op-s-is-000
+        - operation-name: /v1/save-server-configuration
+          uuid: bar-1-0-0-op-s-is-001
+        - operation-name: /v1/fetch-server-configurations
+          uuid: bar-1-0-0-op-s-is-009
+        - operation-name: /v1/fetch-server-configuration/{Id}
+          uuid: bar-1-0-0-op-s-is-002
+        - operation-name: /v1/backup-schedule
+          uuid: bar-1-0-0-op-s-is-003
+        - operation-name: /v1/backup
+          uuid: bar-1-0-0-op-s-is-010
+        - operation-name: /v1/backup-schedule/view-transaction
+          uuid: bar-1-0-0-op-s-is-005
+        - operation-name: /v1/fetch-restore-details-in-gui
+          uuid: bar-1-0-0-op-s-is-006
+        - operation-name: /v1/restore
+          uuid: bar-1-0-0-op-s-is-007
+        - operation-name: /v1/apply-restore
+          uuid: bar-1-0-0-op-s-is-011
+        - operation-name: /v1/confirm-restore
+          uuid: bar-1-0-0-op-s-is-012
+        - operation-name: /v1/restore/view-transaction
+          uuid: bar-1-0-0-op-s-is-008
+  http-server:
+    own-application-name: BackupAndRestore
+    own-release-number: 1.0.0
+    uuid: bar-1-0-0-http-s-000
+    application-purpose: Provides backup and restore management of NE config data .
+    owner-name: Thorsten Hienze
+    owner-email-address: thorsten.heinze@telefonica.com
+    release-list:
+      - release-number: 1.0.0
+        release-date: 12.11.2025
+        changes: Initial version
+  tcp-server:
+    - description: Without TLS layer
+      local-protocol: http
+      own-ip-address: 127.0.0.1
+      own-tcp-port: 4032
+      uuid: bar-1-0-0-tcp-s-000
+
+
+clients:
+
+  - http-client:
+      application-name: ElasticSearch
+      release-number: 1.0.0
+      uuid: bar-1-0-0-http-c-es-1-0-0-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3015
+      uuid: bar-1-0-0-tcp-c-es-1-0-0-000
+    elasticsearch-client:
+      uuid: bar-1-0-0-es-c-es-1-0-0-000
+      index-alias: 22
+      uuid: bar-1-0-0-es-c-es-1-0-0-001
+      index-alias: 23
+      
+  - http-client:
+      application-name: KafkaMessageBus
+      release-number: 1.0.0
+      uuid: bar-1-0-0-http-c-kmb-1-0-0-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3017
+      uuid: bar-1-0-0-tcp-c-kmb-1-0-0-000
+    kafka-client:
+      uuid: bar-1-0-0-kmb-c-kmb-1-0-0-000
+      topic-name: device_change_notifications
+
+  - http-client:
+      application-name: MicroWaveDeviceInventory
+      release-number: 2.0.0
+      uuid: bar-1-0-0-http-c-mwdi-2-0-0-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 4024
+      uuid: bar-1-0-0-tcp-c-mwdi-2-0-0-000
+    operation-clients:
+      own-oam:
+        basic:
+        individual:
+      service:
+        basic:
+        individual:
+          - operation-name: /v1/provide-list-of-connected-devices
+            uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-000
+          - operation-name: /v1/provide-device-status-metadata
+            uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-001
+          
+
+  - http-client:
+      application-name: NewRelease
+      release-number: 2.0.1
+      uuid: bar-1-0-0-http-c-nr-1-0-0-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 4024
+      uuid: bar-1-0-0-tcp-c-nr-1-0-0-000
+    operation-clients:
+      own-oam:
+        basic:
+        individual:
+      service:
+        basic:
+        individual:
+
+  - http-client:
+      application-name: RegistryOffice
+      release-number: 2.1.2
+      uuid: bar-1-0-0-http-c-ro-2-1-2-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3031
+      uuid: bar-1-0-0-tcp-c-ro-2-1-2-000
+    operation-clients:
+      own-oam:
+        basic:
+          - operation-name: /v2/register-application
+            uuid: bar-1-0-0-op-c-bm-ro-2-1-2-000
+          - operation-name: /v1/relay-server-replacement
+            uuid: bar-1-0-0-op-c-bm-ro-2-1-2-001
+          - operation-name: /v1/deregister-application
+            uuid: bar-1-0-0-op-c-bm-ro-2-1-2-002
+          - operation-name: /v1/relay-operation-update
+            uuid: bar-1-0-0-op-c-bm-ro-2-1-2-003
+        individual:
+      service:
+        basic:
+        individual:
+
+  - http-client:
+      application-name: TypeApprovalRegister
+      release-number: 2.1.2
+      uuid: bar-1-0-0-http-c-tar-2-1-2-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3032
+      uuid: bar-1-0-0-tcp-c-tar-2-1-2-000
+    operation-clients:
+      own-oam:
+        basic:
+        individual:
+      service:
+        basic:
+        individual:
+
+  - http-client:
+      application-name: ExecutionAndTraceLog
+      release-number: 2.1.2
+      uuid: bar-1-0-0-http-c-eatl-2-1-2-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3033
+      uuid: bar-1-0-0-tcp-c-eatl-2-1-2-000
+    operation-clients:
+      own-oam:
+        basic:
+          - operation-name: /v1/record-service-request
+            uuid: bar-1-0-0-op-c-bs-eatl-2-1-2-000
+        individual:
+      service:
+        basic:
+        individual:
+
+  - http-client:
+      application-name: OamLog
+      release-number: 2.1.2
+      uuid: bar-1-0-0-http-c-ol-2-1-2-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3034
+      uuid: bar-1-0-0-tcp-c-ol-2-1-2-000
+    operation-clients:
+      own-oam:
+        basic:
+          - operation-name: /v1/record-oam-request
+            uuid: bar-1-0-0-op-c-bs-ol-2-1-2-000
+        individual:
+      service:
+        basic:
+        individual:
+
+  - http-client:
+      application-name: AccessAdministration
+      release-number: 2.1.2
+      uuid: bar-1-0-0-http-c-aa-2-1-2-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3035
+      uuid: bar-1-0-0-tcp-c-aa-2-1-2-000
+    operation-clients:
+      own-oam:
+        basic:
+          - operation-name: /v1/approve-basic-auth-request
+            uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+        individual:
+      service:
+        basic:
+        individual:
+
+  - http-client:
+      application-name: ApplicationLayerTopology
+      release-number: 2.1.2
+      uuid: bar-1-0-0-http-c-alt-2-1-2-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3036
+      uuid: bar-1-0-0-tcp-c-alt-2-1-2-000
+    operation-clients:
+      own-oam:
+        basic:
+          - operation-name: /v1/update-all-ltps-and-fcs
+            uuid: bar-1-0-0-op-c-bm-alt-2-1-2-000
+          - operation-name: /v1/update-ltp
+            uuid: bar-1-0-0-op-c-bm-alt-2-1-2-001
+          - operation-name: /v1/delete-ltp-and-dependents
+            uuid: bar-1-0-0-op-c-bm-alt-2-1-2-002
+          - operation-name: /v1/update-fc
+            uuid: bar-1-0-0-op-c-bm-alt-2-1-2-003
+          - operation-name: /v1/update-fc-port
+            uuid: bar-1-0-0-op-c-bm-alt-2-1-2-004
+          - operation-name: /v1/delete-fc-port
+            uuid: bar-1-0-0-op-c-bm-alt-2-1-2-005
+        individual:
+      service:
+        basic:
+        individual:
+
+  - http-client:
+      application-name: OperationKeyManagement
+      release-number: 2.1.2
+      uuid: bar-1-0-0-http-c-okm-2-1-2-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 3037
+      uuid: bar-1-0-0-tcp-c-okm-2-1-2-000
+    operation-clients:
+      own-oam:
+        basic:
+        individual:
+      service:
+        basic:
+        individual:
+
+  - http-client:
+      application-name: OpenDayLight
+      release-number: 4.0.2
+      uuid: bar-1-0-0-http-c-odl-4-0-2-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 1.1.1.1
+      tcp-port: 1001
+      uuid: bar-1-0-0-tcp-c-odl-4-0-2-000
+    operation-clients:
+      own-oam:
+        basic:
+        individual:
+      service:
+        basic:
+        individual:
+          - operation-name: /{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:backup-system
+            uuid: bar-1-0-0-op-c-is-odl-4-0-2-000
+          - operation-name: /{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:restore-system
+            uuid: bar-1-0-0-op-c-is-odl-4-0-2-001
+          - operation-name: /{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:apply-restored-configuration
+            uuid: bar-1-0-0-op-c-is-odl-4-0-2-002
+          - operation-name: /{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:confirm-restoration
+            uuid: bar-1-0-0-op-c-is-odl-4-0-2-003
+          - operation-name: /{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:backup-and-restore-pac/backup-and-restore-status
+            uuid: bar-1-0-0-op-c-is-odl-4-0-2-004
