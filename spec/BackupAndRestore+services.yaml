@@ -59,28 +59,46 @@ servers:
       individual:
         - operation-name: /v1/start-gui
           uuid: bar-1-0-0-op-s-is-000
-        - operation-name: /v1/save-server-configuration
+          operation-key: n.a.
+        - operation-name: /v1/list-configured-server-names-in-gui
           uuid: bar-1-0-0-op-s-is-001
-        - operation-name: /v1/fetch-server-configurations
-          uuid: bar-1-0-0-op-s-is-009
-        - operation-name: /v1/fetch-server-configuration/{Id}
+          operation-key: n.a.
+        - operation-name: /v1/server-configuration
           uuid: bar-1-0-0-op-s-is-002
+          operation-key: n.a.
+        - operation-name: /v1/server-configuration/{server-id}
+          uuid: bar-1-0-0-op-s-is-012
+          operation-key: n.a.
+        - operation-name: /v1/server-configuration/{server-name}
+          uuid: bar-1-0-0-op-s-is-013
+          operation-key: n.a.
         - operation-name: /v1/backup-schedule
           uuid: bar-1-0-0-op-s-is-003
-        - operation-name: /v1/backup
-          uuid: bar-1-0-0-op-s-is-010
-        - operation-name: /v1/backup-schedule/view-transaction
+          operation-key: n.a.
+        - operation-name: /v1/list-scheduled-backups-in-gui
+          uuid: bar-1-0-0-op-s-is-004
+          operation-key: n.a.
+        - operation-name: /v1/backup-schedules/{scheduleId}
           uuid: bar-1-0-0-op-s-is-005
-        - operation-name: /v1/fetch-restore-details-in-gui
+          operation-key: n.a.
+        - operation-name: /v1/list-backup-jobs-in-gui
           uuid: bar-1-0-0-op-s-is-006
-        - operation-name: /v1/restore
+          operation-key: n.a.
+        - operation-name: /v1/backup-jobs/{jobId}
           uuid: bar-1-0-0-op-s-is-007
-        - operation-name: /v1/apply-restore
-          uuid: bar-1-0-0-op-s-is-011
-        - operation-name: /v1/confirm-restore
-          uuid: bar-1-0-0-op-s-is-012
-        - operation-name: /v1/restore/view-transaction
+          operation-key: n.a.
+        - operation-name: /v1/list-backup-job-nes-in-gui/{jobId}
           uuid: bar-1-0-0-op-s-is-008
+          operation-key: n.a.
+        - operation-name: /v1/backup-jobs/{jobId}/nes/{neId}
+          uuid: bar-1-0-0-op-s-is-009
+          operation-key: n.a.
+        - operation-name: /v1/backup-jobs/{jobId}/abort
+          uuid: bar-1-0-0-op-s-is-010
+          operation-key: n.a.
+        - operation-name: /v1/login
+          uuid: bar-1-0-0-op-s-is-011
+          operation-key: n.a.
   http-server:
     own-application-name: BackupAndRestore
     own-release-number: 1.0.0
@@ -91,7 +109,7 @@ servers:
     release-list:
       - release-number: 1.0.0
         release-date: 12.11.2025
-        changes: Initial version
+        changes: Initial version only supports backup
   tcp-server:
     - description: Without TLS layer
       local-protocol: http
@@ -112,11 +130,15 @@ clients:
       tcp-port: 3015
       uuid: bar-1-0-0-tcp-c-es-1-0-0-000
     elasticsearch-client:
-      uuid: bar-1-0-0-es-c-es-1-0-0-000
-      index-alias: 22
-      uuid: bar-1-0-0-es-c-es-1-0-0-001
-      index-alias: 23
-      
+    - uuid: bar-1-0-0-es-c-es-1-0-0-000
+      index-alias: backup-schedule
+    - uuid: bar-1-0-0-es-c-es-1-0-0-001
+      index-alias: backup-job
+    - uuid: bar-1-0-0-es-c-es-1-0-0-002
+      index-alias: server-configuration
+    - uuid: bar-1-0-0-es-c-es-1-0-0-003
+      index-alias: backup-job-nes-execution
+
   - http-client:
       application-name: KafkaMessageBus
       release-number: 1.0.0
@@ -225,6 +247,7 @@ clients:
         basic:
           - operation-name: /v1/record-service-request
             uuid: bar-1-0-0-op-c-bs-eatl-2-1-2-000
+            detailed-logging-is-on: false
         individual:
       service:
         basic:
@@ -340,3 +363,22 @@ clients:
             uuid: bar-1-0-0-op-c-is-odl-4-0-2-003
           - operation-name: /{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:backup-and-restore-pac/backup-and-restore-status
             uuid: bar-1-0-0-op-c-is-odl-4-0-2-004
+
+  - http-client:
+      application-name: BackupAndRestore
+      release-number: 1.0.0
+      uuid: bar-1-0-0-http-c-or-1-0-0-000
+    tcp-client:
+      remote-protocol: http
+      ip-address: 127.0.0.1
+      tcp-port: 4032
+      uuid: bar-2-0-1-tcp-c-or-1-0-0-000
+    operation-clients:
+      own-oam:
+        basic:
+          - operation-name: /v1/bequeath-your-data-and-die
+            uuid: bar-2-0-1-op-c-bm-or-1-0-0-000
+        individual:
+      service:
+        basic:
+        individual:

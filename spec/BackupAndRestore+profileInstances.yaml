@@ -163,3 +163,23 @@ profile-instances:
       string-name: 'controllerInternalPathToMountPoint'
     configuration:
       string-value: 'rests/data/network-topology:network-topology/topology=topology-netconf'
+
+  - profile-name: 'IntegerProfile'
+    uuid: 'bar-1-0-0-integer-p-001'
+    capability:
+      integer-name: 'scheduleSyncPeriod'
+      purpose: 'Time period to sync and get the schedules'
+      unit: 'minutes'
+      minimum: 5
+      maximum: 72
+    configuration:
+      integer-value: 5
+
+  - profile-name: 'IntegerProfile'
+    uuid: 'bar-1-0-0-integer-p-002'
+    capability:
+      integer-name: 'retryAttempt'
+      purpose: 'No of retry attempt in case NE backup failure'
+      maximum: 3
+    configuration:
+      integer-value: 3
