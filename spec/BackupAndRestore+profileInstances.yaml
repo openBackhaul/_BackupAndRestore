@@ -164,6 +164,27 @@ profile-instances:
     configuration:
       string-value: 'rests/data/network-topology:network-topology/topology=topology-netconf'
 
+  - profile-name: 'StringProfile'
+    uuid: 'bar-1-0-0-string-p-001'
+    capability:
+      string-name: 'HuaweiBackupFileExtension'
+    configuration:
+      string-value: '.pkg'
+  
+  - profile-name: 'StringProfile'
+    uuid: 'bar-1-0-0-string-p-002'
+    capability:
+      string-name: 'SIAEBackupFileExtension'
+    configuration:
+      string-value: '.dwl'
+
+  - profile-name: 'StringProfile'
+    uuid: 'bar-1-0-0-string-p-002'
+    capability:
+      string-name: 'EricssonBackupFileExtension'
+    configuration:
+      string-value: '.dwl'
+
   - profile-name: 'IntegerProfile'
     uuid: 'bar-1-0-0-integer-p-001'
     capability:

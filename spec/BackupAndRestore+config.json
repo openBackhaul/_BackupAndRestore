@@ -285,6 +285,36 @@
                     }
                 },
                 {
+                    "uuid": "bar-1-0-0-string-p-001",
+                    "profile-name": "string-profile-1-0:PROFILE_NAME_TYPE_STRING_PROFILE",
+                    "string-profile-1-0:string-profile-pac": {
+                        "string-profile-capability": {},
+                        "string-profile-configuration": {
+                            "string-value": ".pkg"
+                        }
+                    }
+                },
+                {
+                    "uuid": "bar-1-0-0-string-p-002",
+                    "profile-name": "string-profile-1-0:PROFILE_NAME_TYPE_STRING_PROFILE",
+                    "string-profile-1-0:string-profile-pac": {
+                        "string-profile-capability": {},
+                        "string-profile-configuration": {
+                            "string-value": ".dwl"
+                        }
+                    }
+                },
+                {
+                    "uuid": "bar-1-0-0-string-p-002",
+                    "profile-name": "string-profile-1-0:PROFILE_NAME_TYPE_STRING_PROFILE",
+                    "string-profile-1-0:string-profile-pac": {
+                        "string-profile-capability": {},
+                        "string-profile-configuration": {
+                            "string-value": ".dwl"
+                        }
+                    }
+                },
+                {
                     "uuid": "bar-1-0-0-integer-p-001",
                     "profile-name": "integer-profile-1-0:PROFILE_NAME_TYPE_INTEGER_PROFILE",
                     "integer-profile-1-0:integer-profile-pac": {
@@ -1280,7 +1310,7 @@
                                 "auth": {
                                     "api-key": "API key not yet defined."
                                 },
-                                "index-alias": "backup-job"
+                                "index-alias": "backup-job-execution"
                             },
                             "elasticsearch-client-interface-status": {
                                 "operational-state": "elasticsearch-client-interface-1-0:OPERATIONAL_STATE_TYPE_NOT_YET_DEFINED",
@@ -2708,6 +2738,81 @@
                                 "local-id": "200",
                                 "port-direction": "core-model-1-4:PORT_DIRECTION_TYPE_OUTPUT",
                                 "logical-termination-point": "bar-1-0-0-op-c-bm-ro-2-1-2-001"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "bar-1-0-0-op-fc-im-000",
+                        "name": [
+                            {
+                                "value-name": "ForwardingKind",
+                                "value": "core-model-1-4:FORWARDING_KIND_TYPE_INVARIANT_PROCESS_SNIPPET"
+                            },
+                            {
+                                "value-name": "ForwardingName",
+                                "value": "PromptForEmbeddingCausesSubscribingForDeviceChangeNotificationsAtKafka"
+                            }
+                        ],
+                        "fc-port": [
+                            {
+                                "local-id": "100",
+                                "port-direction": "core-model-1-4:PORT_DIRECTION_TYPE_INPUT",
+                                "logical-termination-point": "bar-1-0-0-op-s-bm-001"
+                            },
+                            {
+                                "local-id": "200",
+                                "port-direction": "core-model-1-4:PORT_DIRECTION_TYPE_OUTPUT",
+                                "logical-termination-point": "bar-1-0-0-kmb-c-kmb-1-0-0-000"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "bar-1-0-0-op-fc-im-001",
+                        "name": [
+                            {
+                                "value-name": "ForwardingKind",
+                                "value": "core-model-1-4:FORWARDING_KIND_TYPE_INVARIANT_PROCESS_SNIPPET"
+                            },
+                            {
+                                "value-name": "ForwardingName",
+                                "value": "PromptForEmbeddingCausesCylicPollingOfDeviceChangeNotificationsFromKafka"
+                            }
+                        ],
+                        "fc-port": [
+                            {
+                                "local-id": "100",
+                                "port-direction": "core-model-1-4:PORT_DIRECTION_TYPE_INPUT",
+                                "logical-termination-point": "bar-1-0-0-op-s-bm-001"
+                            },
+                            {
+                                "local-id": "200",
+                                "port-direction": "core-model-1-4:PORT_DIRECTION_TYPE_OUTPUT",
+                                "logical-termination-point": "bar-1-0-0-kmb-c-kmb-1-0-0-000"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "bar-1-0-0-op-fc-im-115",
+                        "name": [
+                            {
+                                "value-name": "ForwardingKind",
+                                "value": "core-model-1-4:FORWARDING_KIND_TYPE_INVARIANT_PROCESS_SNIPPET"
+                            },
+                            {
+                                "value-name": "ForwardingName",
+                                "value": "PromptForBequeathingDataCausesUnsubscribingFromDeviceChangeNotificationsAtKafka"
+                            }
+                        ],
+                        "fc-port": [
+                            {
+                                "local-id": "100",
+                                "port-direction": "core-model-1-4:PORT_DIRECTION_TYPE_INPUT",
+                                "logical-termination-point": "bar-1-0-0-op-s-im-000"
+                            },
+                            {
+                                "local-id": "200",
+                                "port-direction": "core-model-1-4:PORT_DIRECTION_TYPE_OUTPUT",
+                                "logical-termination-point": "bar-1-0-0-kmb-c-kmb-1-0-0-000"
                             }
                         ]
                     },

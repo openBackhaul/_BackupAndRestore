@@ -133,7 +133,7 @@ clients:
     - uuid: bar-1-0-0-es-c-es-1-0-0-000
       index-alias: backup-schedule
     - uuid: bar-1-0-0-es-c-es-1-0-0-001
-      index-alias: backup-job
+      index-alias: backup-job-execution
     - uuid: bar-1-0-0-es-c-es-1-0-0-002
       index-alias: server-configuration
     - uuid: bar-1-0-0-es-c-es-1-0-0-003
@@ -173,7 +173,6 @@ clients:
           - operation-name: /v1/provide-device-status-metadata
             uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-001
           
-
   - http-client:
       application-name: NewRelease
       release-number: 2.0.1
