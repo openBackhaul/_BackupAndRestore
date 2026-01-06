@@ -1284,7 +1284,7 @@
                                 "auth": {
                                     "api-key": "API key not yet defined."
                                 },
-                                "index-alias": "backup-schedule"
+                                "index-alias": "server-configuration"
                             },
                             "elasticsearch-client-interface-status": {
                                 "operational-state": "elasticsearch-client-interface-1-0:OPERATIONAL_STATE_TYPE_NOT_YET_DEFINED",
@@ -1310,7 +1310,7 @@
                                 "auth": {
                                     "api-key": "API key not yet defined."
                                 },
-                                "index-alias": "backup-job-execution"
+                                "index-alias": "backup-schedule"
                             },
                             "elasticsearch-client-interface-status": {
                                 "operational-state": "elasticsearch-client-interface-1-0:OPERATIONAL_STATE_TYPE_NOT_YET_DEFINED",
@@ -1336,7 +1336,7 @@
                                 "auth": {
                                     "api-key": "API key not yet defined."
                                 },
-                                "index-alias": "server-configuration"
+                                "index-alias": "backup-job-execution"
                             },
                             "elasticsearch-client-interface-status": {
                                 "operational-state": "elasticsearch-client-interface-1-0:OPERATIONAL_STATE_TYPE_NOT_YET_DEFINED",
