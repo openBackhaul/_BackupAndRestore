@@ -1,0 +1,182 @@
+@startuml
+title One Time Backup Schedule- Flow
+
+hide footbox
+skinparam participantPadding 30
+skinparam sequenceMessageAlign center
+
+
+actor User
+participant UI
+participant "Backup API Service" as API
+participant "Schedule Validator" as Validator
+database "Elasticsearch\n(backup-schedules)" as ES
+participant "Job Orchestrator" as Orchestrator
+database "Elasticsearch\nbackup-jobs" as JobES
+database "Elasticsearch\nne-executions" as NEES
+participant "MWDI" as MWDI
+participant "Notifications" as Notifications
+participant "kafka" as kafka
+participant "ODL Controller" as ODL
+
+
+== Schedule Creation Phase ==
+User -> UI : Enter one time backup
+UI -> API : POST /v1/backup-schedule
+
+API -> Validator : validate request
+Validator --> API : request valid
+
+API -> ES : Store schedule
+note right of ES
+{
+scheduleId,
+scheduleName,
+serverName,
+vendor,
+model,
+frequency=ONCE,
+status,
+runOnceAt,
+timeZone,
+createdAt,
+status=SCHEUDLED,
+createdByUser,
+forceUpload,
+nextRunTime,
+createdTime
+}
+end note
+
+ES --> API : 201 Created
+API --> UI : Schedule created
+
+== Schedule Listing / UI Refresh ==
+
+UI -> API: /v1/list-scheduled-backups-in-gui
+API -> ES : Search schedules
+ES -> API : Schedule List
+API --> UI : Display Schedules
+
+== Runtime Scheduler Phase ==
+
+loop every N minutes(configurable via profile)
+ Scheduler -> ES : Fetch SCHEDULED schedules
+ ES --> Scheduler : Schedule docs
+ 
+ Scheduler -> Scheduler : get runOnceAt <= nowUtc() for once schedule
+ 
+ alt matched schedules
+    Scheduler -> Orchestrator : Trigger Job(scheduleId)
+ end
+end
+
+== Job Creation Phase ==
+
+Orchestrator -> ES : Fetch ONE-TIME schedule when runOnceAt <= nowUtc()
+ES --> Orchestrator : Schedule Document 
+
+Orchestrator -> MWDI:/v1/provide-list-of-connected-devices
+MWDI -> Orchestrator : Connected Devices List
+Orchestrator -> MWDI:/v1/provide-device-status-metadata
+note right of Orchestrator
+{
+ mount-name-list : []
+}
+end note
+MWDI -> Orchestrator: metadata of the conneced NEs
+
+Orchestrator -> Orchestrator : Filter eligible NEs
+note right of Orchestrator
+Filter:
+ - vendor
+ - model
+end note
+
+Orchestrator -> JobES: Create backup job
+note right of JobES
+{
+jobId,
+scheduleId,
+vendor,
+model,
+totalNEs,
+succeededNEs,
+failedNEs,
+abortedNEs,
+status,
+startTime,
+endTime,
+jobCreatedTime,
+jobUpdatedTime
+}
+end note
+
+Orchestrator -> NEES : Create NE execution entries
+note right of NEES
+{
+ neId,
+ jobId,
+ status,
+ startTime,
+ retryEligible,
+ retryCount
+}
+end note
+
+== NE Execution ==
+ loop for each NE
+    Orchestrator -> ODL: /rests/operations/network-topology:network-topology/topology=topology-netconf/node=<nodename>/yang-ext:mount/backup-and-restore-1-0:backup-system
+
+    note right of Orchestrator
+    {
+       "destination-uri": "<sftp://path>",
+       "filename": "<filename>",
+       "username-at-file-server": "<username>",
+       "password-at-file-server": "<password>",
+       "ssh-key": "",
+       "force-upload": true
+    }
+    end note
+
+    ODL -> Orchestrator : Result(SUCCESS/FAILED)
+    Orchestrator -> Notfications : NE ID
+    Notifications -> kafka : Listen to attribute value change notifications for backup and restore
+    kafka -> Notifications : attribute value change notifications 
+    Notifications <- Notifications : check for backup completed, ongoing notifications of that NE
+    Notifications -> Orchestrator : status
+    Orchestrator -> NEES : Update NE status
+ end
+== Job Completion ==
+
+Orchestrator -> JobES : Update job status
+note right of JobES
+{
+ status: SUCCEEDED/FAILED,
+ backupFileStoredPath,
+ errorMessage,
+ endTime
+}
+end note
+
+== Job & execution Visibility ==
+ UI -> API : /v1/list-backup-jobs-in-gui
+ API -> JobES : Fetch jobs
+ JobES --> API
+ API --> UI : Show job list
+ 
+ UI -> API : /v1/list-backup-job-nes-in-gui/{jobId}
+ API -> NEES : Fetch NE executions
+ NEES -> API
+ API -> UI : Show NE progress
+ 
+== Retry & Abort ==
+
+UI -> API : POST /v1/jobs/{jobId}/nes/{neId}/retry
+API -> NEES : Update retry metadata
+API -> Orchestrator : Retry NE backup
+
+UI -> API : /v1/jobs/{jobId}/abort
+API -> JobES : Mark job Aborted
+
+@enduml
