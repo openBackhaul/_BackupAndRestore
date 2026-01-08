@@ -1,0 +1,79 @@
+@startuml
+title Retry NE Backup Flow
+
+actor User
+participant UI
+participant "Access Administration" as Auth
+participant "Backup API" as API
+participant "OpenAPI Validator" as OAV
+participant "Job Service" as Service
+database "Elasticsearch\nbackup-job-ne-executions" as ES_NE
+participant "Job Orchestrator" as Orchestrator
+participant "ODL Controller" as ODL
+
+== Retry Request ==
+
+User -> UI : Click Retry on failed NE
+UI -> API : POST /backup-jobs/{jobId}/nes/{neId}/retry
+
+API -> Auth : Authenticate & authorize
+Auth --> API : OK
+
+API -> OAV : Validate request
+OAV --> API : Valid
+
+== Fetch NE Execution ==
+
+API -> ES_NE : Get NE execution(jobId, neId)
+ES_NE --> API : NE execution details
+
+note right of API
+Expected:
+status = FAILED
+retryAttempts < maxRetries
+end note
+
+== Eligibility Check ==
+
+API -> Service : Validate retry eligibility
+
+alt Status != FAILED
+  Service --> API : Retry not allowed
+  API --> UI : INVALID_NE_STATE
+else Retry allowed
+  Service -> ES_NE : Update NE execution
+  note right of ES_NE
+  {
+    status: ONGOING,
+    retryAttempts: +1,
+    startTime: now(),
+    endTime: null,
+    errorMessage: null
+  }
+  end note
+end
+
+== Trigger Backup ==
+
+Service -> Orchestrator : Trigger NE backup(jobId, neId)
+Orchestrator -> ODL : Invoke backup on device
+ODL --> Orchestrator : ACK
+
+== Async Completion ==
+
+ODL --> Orchestrator : Backup result
+Orchestrator -> ES_NE : Update NE execution
+note right of ES_NE
+Success:
+- status: COMPLETED
+- endTime
+
+Failure:
+- status: FAILED
+- endTime
+- errorMessage
+end note
+
+API --> UI : 202 ACCEPTED
+
+@enduml

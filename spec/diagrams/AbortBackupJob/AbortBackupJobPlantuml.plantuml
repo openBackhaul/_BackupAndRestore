@@ -1,0 +1,49 @@
+@startuml
+title Abort Backup Job Flow
+
+actor User
+participant UI
+participant "Backup API" as API
+participant "AccessAdministration" as Auth
+database "Elasticsearch\nbackup-job-execution" as JobES
+database "Elasticsearch\nbackup-job-ne-executions" as NEES
+participant "Job Orchestrator" as Orchestrator
+
+== Abort Request ==
+
+User -> UI : Click "Abort Job"
+UI -> API : POST /v1/backup-jobs/{jobId}/abort
+
+API -> Auth : Authorize user
+Auth --> API : Authorized
+
+API -> JobES : Get job(jobId)
+JobES --> API : Job document
+
+== Abort Processing ==
+
+
+API -> NEES : Update NE executions
+note right of NEES
+Where status = IDLE
+→ set status = ABORTED
+→ set endTime
+→ set abortedByUser
+end note
+
+API -> Orchestrator : Stop scheduling new NEs(jobId)
+
+== Runtime Completion ==
+
+Orchestrator -> Orchestrator : Wait for ONGOING NEs to finish
+Orchestrator -> JobES : Update job.status = as per completion status
+
+== Response ==
+
+API --> UI : 202 Accepted
+note right of UI
+Pending NEs skipped.
+Running NEs allowed to finish.
+end note
+
+@enduml
