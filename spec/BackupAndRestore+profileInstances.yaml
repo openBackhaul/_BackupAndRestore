@@ -167,21 +167,21 @@ profile-instances:
   - profile-name: 'StringProfile'
     uuid: 'bar-1-0-0-string-p-001'
     capability:
-      string-name: 'HuaweiBackupFileExtension'
+      string-name: 'huaweiBackupFileExtension'
     configuration:
       string-value: '.pkg'
   
   - profile-name: 'StringProfile'
     uuid: 'bar-1-0-0-string-p-002'
     capability:
-      string-name: 'SIAEBackupFileExtension'
+      string-name: 'siaeBackupFileExtension'
     configuration:
       string-value: '.dwl'
 
   - profile-name: 'StringProfile'
     uuid: 'bar-1-0-0-string-p-002'
     capability:
-      string-name: 'EricssonBackupFileExtension'
+      string-name: 'ericssonBackupFileExtension'
     configuration:
       string-value: '.dwl'
 
@@ -202,5 +202,13 @@ profile-instances:
       integer-name: 'retryAttempt'
       purpose: 'No of retry attempt in case NE backup failure'
       maximum: 3
+    configuration:
+      integer-value: 3
+
+  - profile-name: 'IntegerProfile'
+    uuid: 'bar-1-0-0-integer-p-003'
+    capability:
+      integer-name: 'noOfParalleNEBackupCount'
+      purpose: 'No of NEs where backup can be executed in parallel'
     configuration:
       integer-value: 3

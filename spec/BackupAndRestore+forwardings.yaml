@@ -793,6 +793,36 @@ forwardings:
       - client-name: OpenDayLight://{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:backup-system
         uuid: bar-1-0-0-op-c-is-odl-4-0-2-000
   
+  - forwarding-name: PromptForBackupJobCreationCausesToFetchListOfConnectedDevicesFromMWDI
+    uuid: bar-1-0-0-op-fc-is-031
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name:
+        uuid:
+    consequent-requests:
+      - client-name: /v1/provide-list-of-connected-devices
+        uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-000
+
+  - forwarding-name: PromptForBackupJobCreationCausesToFetchConnectedDevicesMetadataFromMWDI
+    uuid: bar-1-0-0-op-fc-is-031
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name:
+        uuid:
+    consequent-requests:
+      - client-name: /v1/provide-device-status-metadata
+        uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-001
+
   - forwarding-name: GuiRequestForVisualizingListOfBackupJobCauses.Authentication
     uuid: bar-1-0-0-op-fc-is-020
     forwarding-type: InvariantProcessSnippet
