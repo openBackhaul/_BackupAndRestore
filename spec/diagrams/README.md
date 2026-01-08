@@ -8,7 +8,7 @@ This document is the entry point for understanding the internal
 
 - [Time Handling & UTC](./BackupDocs/time-handling.md)
 - [Status Models](./BackupDocs/status-models.md)
-- [Elasticsearch Data Model](../BackupDocs/elasticsearch-model.md)
+- [Elasticsearch Data Model](./BackupDocs/elasticsearch-model.md)
 
 ## Flow Categories
 
