@@ -66,10 +66,10 @@ servers:
         - operation-name: /v1/server-configuration
           uuid: bar-1-0-0-op-s-is-002
           operation-key: n.a.
-        - operation-name: /v1/server-configuration/{server-id}
+        - operation-name: /v1/server-configuration/{serverId}
           uuid: bar-1-0-0-op-s-is-012
           operation-key: n.a.
-        - operation-name: /v1/server-configuration/{server-name}
+        - operation-name: /v1/retrieve-server-configuration/{serverName}
           uuid: bar-1-0-0-op-s-is-013
           operation-key: n.a.
         - operation-name: /v1/backup-schedule

@@ -689,6 +689,7 @@ paths:
                   type: string
                   minLength: 3
                   maxLength: 63
+                  pattern: "^[A-Za-z]{3,63}$"
                   description: >
                     'Name of the server that shall be added should be unique'
                 destination-url:
@@ -715,7 +716,7 @@ paths:
                     description: >
                       'Retention period'
               example:
-                serverName: 'Server1'
+                serverName: 'ServerOne'
                 destination-url: 'sftp://127.0.0.0:22/mount'
                 username-at-file-server: 'admin'
                 password-at-file-server: '********'
@@ -876,6 +877,7 @@ paths:
                           type: string
                           minLength: 3
                           maxLength: 63
+                          pattern: "^[A-Za-z]{3,63}$"
                           description: >
                             'Name of the server that shall be added should be unique'
                         serverId:
@@ -1184,7 +1186,7 @@ paths:
                   $ref: '#/components/responses/responseForErroredServiceRequests'
                 default:
                   $ref: '#/components/responses/responseForErroredServiceRequests'
-  /v1/server-configuration/{serverName}:
+  /v1/retrieve-server-configuration/{serverName}:
     parameters:
         - $ref: '#/components/parameters/user'
         - $ref: '#/components/parameters/originator'
@@ -1207,6 +1209,7 @@ paths:
             type: string
             minLength: 3
             maxLength: 63
+            pattern: "^[A-Za-z]{3,63}$"
       responses:
         '200':
           description: 'Configured server details provided'
@@ -1227,6 +1230,7 @@ paths:
                     type: string
                     minLength: 3
                     maxLength: 63
+                    pattern: "^[A-Za-z]{3,63}$"
                     description: >
                       'Name of the server'
                   serverId:
@@ -1257,7 +1261,7 @@ paths:
                     description: >
                       'retention period'
               example:
-                serverName: 'Server1'
+                serverName: 'ServerOne'
                 serverId: 'Server-1'
                 destination-url: 'sftp://127.0.0.0:22/mount'
                 username-at-file-server: 'admin'
@@ -1405,6 +1409,7 @@ paths:
                     type: string
                     minLength: 3
                     maxLength: 63
+                    pattern: "^[A-Za-z]{3,63}$"
               responses:
                 '200':
                   description: 'Configured server details provided'
@@ -1425,6 +1430,7 @@ paths:
                             type: string
                             minLength: 3
                             maxLength: 63
+                            pattern: "^[A-Za-z]{3,63}$"
                             description: >
                               'Name of the server'
                           serverId:
@@ -1451,7 +1457,7 @@ paths:
                             description: >
                               'SSH Key of the server'
                         example:
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           serverId: 'Server-1'
                           destination-url: 'sftp://127.0.0.0:22/mount'
                           username-at-file-server: 'admin'
@@ -1500,42 +1506,45 @@ paths:
                   summary: Weekly backup
                   value:
                     scheduleName: 'WeeklyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'WEEKLY'
                     dayOfWeek: 'SUNDAY'
                     runAtTime: '02:00'
                     timeZone: 'UTC'
+                    startDate: "2026-01-10"
                     forceUpload: true
                 MonthlyBackupScheduleExample:
                   summary: Monthly backup
                   value:
                     scheduleName: 'MonthlyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'MONTHLY'
                     dayOfMonth: 31
                     runAtTime: '02:00'
                     timeZone: 'UTC'
+                    startDate: "2026-01-10"
                     forceUpload: false
                 DailyBackupScheduleExample:
                   summary: Daily backup
                   value:
                     scheduleName: 'DailyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'DAILY'
                     runAtTime: '02:00'
                     timeZone: 'UTC'
+                    startDate: "2026-01-10"
                     forceUpload: false
                 ScheduleBackupOnceExample:
                   summary: Backup Once
                   value:
                     scheduleName: 'ScheduleBackupOnce'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'ONCE'
@@ -1705,12 +1714,13 @@ paths:
                         value:
                           scheduleId: schedule-1
                           scheduleName: 'WeeklyBackupSchedule'
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           vendor: 'Ericsson'
                           model: 'ML0991'
                           frequency: 'WEEKLY'
                           dayOfWeek: 'SUNDAY'
                           runAtTime: '02:00'
+                          startDate: "2026-01-10"
                           timeZone: 'UTC'
                           forceUpload: true
                           status: 'SCHEDULED'
@@ -1722,11 +1732,12 @@ paths:
                         value:
                           scheduleId: schedule-2
                           scheduleName: 'MonthlyBackupSchedule'
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           vendor: 'Ericsson'
                           model: 'ML0991'
                           frequency: 'MONTHLY'
                           dayOfMonth: 31
+                          startDate: "2026-01-10"
                           runAtTime: '02:00'
                           timeZone: 'UTC'
                           forceUpload: false
@@ -1739,12 +1750,13 @@ paths:
                         value:
                           scheduleId: schedule-3
                           scheduleName: 'DailyBackupSchedule'
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           vendor: 'Ericsson'
                           model: 'ML0991'
                           frequency: 'DAILY'
                           runAtTime: '02:00'
                           timeZone: 'UTC'
+                          startDate: "2026-01-10"
                           forceUpload: false
                           status: 'CANCELLED'
                           nextRunTime: '2025-12-25T14:30:00Z'
@@ -1755,7 +1767,7 @@ paths:
                         value:
                           scheduleId: schedule-4
                           scheduleName: 'ScheduleBackupOnce'
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           vendor: 'Ericsson'
                           model: 'ML0991'
                           frequency: 'ONCE'
@@ -1839,13 +1851,14 @@ paths:
               example:
                 - scheduleId: schedule-1
                   scheduleName: 'WeeklyBackupSchedule'
-                  serverName: 'Server1'
+                  serverName: 'ServerOne'
                   vendor: 'Ericsson'
                   model: 'ML0991'
                   frequency: 'WEEKLY'
                   dayOfWeek: 'SUNDAY'
                   runAtTime: '02:00'
                   timeZone: 'UTC'
+                  startDate: "2026-01-10"
                   forceUpload: true
                   status: 'SCHEDULED'
                   createdByUser: 'userName'
@@ -1854,12 +1867,13 @@ paths:
                   lastRunTime: '2025-12-25T14:30:00Z'
                 - scheduleId: schedule-2
                   scheduleName: 'MonthlyBackupSchedule'
-                  serverName: 'Server1'
+                  serverName: 'ServerOne'
                   vendor: 'Ericsson'
                   model: 'ML0991'
                   frequency: 'MONTHLY'
                   dayOfMonth: 31
                   runAtTime: '02:00'
+                  startDate: "2026-01-10"
                   timeZone: 'UTC'
                   forceUpload: false
                   status: 'PAUSED'
@@ -1871,12 +1885,13 @@ paths:
                   lastModifiedTime: '2025-12-25T14:30:00Z'
                 - scheduleId: schedule-3
                   scheduleName: 'DailyBackupSchedule'
-                  serverName: 'Server1'
+                  serverName: 'ServerOne'
                   vendor: 'Ericsson'
                   model: 'ML0991'
                   frequency: 'DAILY'
                   runAtTime: '02:00'
                   timeZone: 'UTC'
+                  startDate: "2026-01-10"
                   forceUpload: false
                   status: 'CANCELLED'
                   createdByUser: 'userName'
@@ -1887,7 +1902,7 @@ paths:
                   lastModifiedTime: '2025-12-25T14:30:00Z'
                 - scheduleId: schedule-4
                   scheduleName: 'ScheduleBackupOnce'
-                  serverName: 'Server1'
+                  serverName: 'ServerOne'
                   vendor: 'Ericsson'
                   model: 'ML0991'
                   frequency: 'ONCE'
@@ -2042,12 +2057,13 @@ paths:
                       example:
                         - scheduleId: schedule-1
                           scheduleName: 'WeeklyBackupSchedule'
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           vendor: 'Ericsson'
                           model: 'ML0991'
                           frequency: 'WEEKLY'
                           dayOfWeek: 'SUNDAY'
                           runAtTime: '02:00'
+                          startDate: "2026-01-10"
                           timeZone: 'UTC'
                           forceUpload: true
                           status: 'SCHEDULED'
@@ -2057,13 +2073,14 @@ paths:
                           lastRunTime: '2025-12-25T14:30:00Z'
                         - scheduleId: schedule-2
                           scheduleName: 'MonthlyBackupSchedule'
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           vendor: 'Ericsson'
                           model: 'ML0991'
                           frequency: 'MONTHLY'
                           dayOfMonth: 31
                           runAtTime: '02:00'
                           timeZone: 'UTC'
+                          startDate: "2026-01-10"
                           forceUpload: false
                           status: 'PAUSED'
                           createdByUser: 'userName'
@@ -2074,12 +2091,13 @@ paths:
                           lastModifiedTime: '2025-12-25T14:30:00Z'
                         - scheduleId: schedule-3
                           scheduleName: 'DailyBackupSchedule'
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           vendor: 'Ericsson'
                           model: 'ML0991'
                           frequency: 'DAILY'
                           runAtTime: '02:00'
                           timeZone: 'UTC'
+                          startDate: "2026-01-10"
                           forceUpload: false
                           status: 'CANCELLED'
                           createdByUser: 'userName'
@@ -2090,7 +2108,7 @@ paths:
                           lastModifiedTime: '2025-12-25T14:30:00Z'
                         - scheduleId: schedule-4
                           scheduleName: 'ScheduleBackupOnce'
-                          serverName: 'Server1'
+                          serverName: 'ServerOne'
                           vendor: 'Ericsson'
                           model: 'ML0991'
                           frequency: 'ONCE'
@@ -2153,12 +2171,13 @@ paths:
                   value:
                     scheduleId: schedule-1
                     scheduleName: 'WeeklyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'WEEKLY'
                     dayOfWeek: 'SUNDAY'
                     runAtTime: '02:00'
+                    startDate: "2026-01-10"
                     timeZone: 'UTC'
                     forceUpload: true
                     status: 'SCHEDULED'
@@ -2170,12 +2189,13 @@ paths:
                   value:
                     scheduleId: schedule-2
                     scheduleName: 'MonthlyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'MONTHLY'
                     dayOfMonth: 31
                     runAtTime: '02:00'
+                    startDate: "2026-01-10"
                     timeZone: 'UTC'
                     forceUpload: false
                     status: 'PAUSED'
@@ -2190,13 +2210,14 @@ paths:
                   value:
                     scheduleId: schedule-3
                     scheduleName: 'DailyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'DAILY'
                     runAtTime: '02:00'
                     timeZone: 'UTC'
                     forceUpload: false
+                    startDate: "2026-01-10"
                     status: 'CANCELLED'
                     nextRunTime: '2025-12-25T14:30:00Z'
                     createdByUser: 'userName'
@@ -2208,7 +2229,7 @@ paths:
                   value:
                     scheduleId: schedule-4
                     scheduleName: 'ScheduleBackupOnce'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'ONCE'
@@ -2371,13 +2392,14 @@ paths:
                           value:
                             scheduleId: schedule-1
                             scheduleName: 'WeeklyBackupSchedule'
-                            serverName: 'Server1'
+                            serverName: 'ServerOne'
                             vendor: 'Ericsson'
                             model: 'ML0991'
                             frequency: 'WEEKLY'
                             dayOfWeek: 'SUNDAY'
                             runAtTime: '02:00'
                             timeZone: 'UTC'
+                            startDate: "2026-01-10"
                             forceUpload: true
                             status: 'SCHEDULED'
                             nextRunTime: '2025-12-25T14:30:00Z'
@@ -2388,12 +2410,13 @@ paths:
                           value:
                             scheduleId: schedule-2
                             scheduleName: 'MonthlyBackupSchedule'
-                            serverName: 'Server1'
+                            serverName: 'ServerOne'
                             vendor: 'Ericsson'
                             model: 'ML0991'
                             frequency: 'MONTHLY'
                             dayOfMonth: 31
                             runAtTime: '02:00'
+                            startDate: "2026-01-10"
                             timeZone: 'UTC'
                             forceUpload: false
                             status: 'PAUSED'
@@ -2408,12 +2431,13 @@ paths:
                           value:
                             scheduleId: schedule-3
                             scheduleName: 'DailyBackupSchedule'
-                            serverName: 'Server1'
+                            serverName: 'ServerOne'
                             vendor: 'Ericsson'
                             model: 'ML0991'
                             frequency: 'DAILY'
                             runAtTime: '02:00'
                             timeZone: 'UTC'
+                            startDate: "2026-01-10"
                             forceUpload: false
                             status: 'CANCELLED'
                             nextRunTime: '2025-12-25T14:30:00Z'
@@ -2426,7 +2450,7 @@ paths:
                           value:
                             scheduleId: schedule-4
                             scheduleName: 'ScheduleBackupOnce'
-                            serverName: 'Server1'
+                            serverName: 'ServerOne'
                             vendor: 'Ericsson'
                             model: 'ML0991'
                             frequency: 'ONCE'
@@ -2515,13 +2539,14 @@ paths:
                   value:
                     scheduleId: schedule-1
                     scheduleName: 'WeeklyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'WEEKLY'
                     dayOfWeek: 'SUNDAY'
                     runAtTime: '02:00'
                     timeZone: 'UTC'
+                    startDate: "2026-01-10"
                     forceUpload: true
                     status: 'SCHEDULED'
                     nextRunTime: '2025-12-25T14:30:00Z'
@@ -2532,13 +2557,14 @@ paths:
                   value:
                     scheduleId: schedule-2
                     scheduleName: 'MonthlyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'MONTHLY'
                     dayOfMonth: 31
                     runAtTime: '02:00'
                     timeZone: 'UTC'
+                    startDate: "2026-01-10"
                     forceUpload: false
                     status: 'PAUSED'
                     createdByUser: 'userName'
@@ -2552,10 +2578,11 @@ paths:
                   value:
                     scheduleId: schedule-3
                     scheduleName: 'DailyBackupSchedule'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'DAILY'
+                    startDate: "2026-01-10"
                     runAtTime: '02:00'
                     timeZone: 'UTC'
                     forceUpload: false
@@ -2570,7 +2597,7 @@ paths:
                   value:
                     scheduleId: schedule-4
                     scheduleName: 'ScheduleBackupOnce'
-                    serverName: 'Server1'
+                    serverName: 'ServerOne'
                     vendor: 'Ericsson'
                     model: 'ML0991'
                     frequency: 'ONCE'
@@ -2780,12 +2807,13 @@ paths:
                           value:
                             scheduleId: schedule-1
                             scheduleName: 'WeeklyBackupSchedule'
-                            serverName: 'Server1'
+                            serverName: 'ServerOne'
                             vendor: 'Ericsson'
                             model: 'ML0991'
                             frequency: 'WEEKLY'
                             dayOfWeek: 'SUNDAY'
                             runAtTime: '02:00'
+                            startDate: "2026-01-10"
                             timeZone: 'UTC'
                             forceUpload: true
                             status: 'SCHEDULED'
@@ -2797,10 +2825,11 @@ paths:
                           value:
                             scheduleId: schedule-2
                             scheduleName: 'MonthlyBackupSchedule'
-                            serverName: 'Server1'
+                            serverName: 'ServerOne'
                             vendor: 'Ericsson'
                             model: 'ML0991'
                             frequency: 'MONTHLY'
+                            startDate: "2026-01-10"
                             dayOfMonth: 31
                             runAtTime: '02:00'
                             timeZone: 'UTC'
@@ -2817,10 +2846,11 @@ paths:
                           value:
                             scheduleId: schedule-3
                             scheduleName: 'DailyBackupSchedule'
-                            serverName: 'Server1'
+                            serverName: 'ServerOne'
                             vendor: 'Ericsson'
                             model: 'ML0991'
                             frequency: 'DAILY'
+                            startDate: "2026-01-10"
                             runAtTime: '02:00'
                             timeZone: 'UTC'
                             forceUpload: false
@@ -2835,7 +2865,7 @@ paths:
                           value:
                             scheduleId: schedule-4
                             scheduleName: 'ScheduleBackupOnce'
-                            serverName: 'Server1'
+                            serverName: 'ServerOne'
                             vendor: 'Ericsson'
                             model: 'ML0991'
                             frequency: 'ONCE'
@@ -13150,7 +13180,7 @@ components:
           type: string
           minLength : 3
           maxLength : 63
-          pattern: "^[A-Za-z0-9_-]{3,64}$"
+          pattern: "^[A-Za-z]{3,63}$"
           description: >
             'Name of the server where the backup file shall be stored'
         vendor:
@@ -13189,6 +13219,7 @@ components:
               - required: [runAtTime]
               - required: [dayOfWeek]
               - required: [dayOfMonth]
+              - required: [startDate]
     BackupScheduleDaily:
       description: Daily recurring backup schedule
       allOf:
@@ -13196,12 +13227,18 @@ components:
         - type: object
           required:
             - runAtTime
+            - startDate
           properties:
             runAtTime:
               type: string
               pattern : "([01]\\d|2[0-3]):[0-5]\\d$"
               description: >
                 'Time when the backup shall be run required only when frequency is DAILY,WEEKLY,MONTHLY'
+            startDate:
+              type: string
+              format: date
+              description: >
+                'Start date of the backup shall be run required only when frequency is DAILY,WEEKLY,MONTHLY'
           not:
             anyOf:
               - required: [runOnceAt]
@@ -13215,6 +13252,7 @@ components:
           required:
             - dayOfWeek
             - runAtTime
+            - startDate
           properties:
             dayOfWeek:
                   type: string
@@ -13226,6 +13264,11 @@ components:
               pattern : "([01]\\d|2[0-3]):[0-5]\\d$"
               description: >
                 'Time when the backup shall be run required only when frequency is DAILY,WEEKLY,MONTHLY'
+            startDate:
+              type: string
+              format: date
+              description: >
+                'Start date of the backup shall be run required only when frequency is DAILY,WEEKLY,MONTHLY'
           not:
             anyOf:
               - required: [startTime]
@@ -13238,6 +13281,7 @@ components:
           required:
             - dayOfMonth
             - runAtTime
+            - startDate
           properties:
             dayOfMonth:
               type: integer
@@ -13250,6 +13294,11 @@ components:
               pattern : "([01]\\d|2[0-3]):[0-5]\\d$"
               description: >
                 'Time when the backup shall be run required only when frequency is DAILY,WEEKLY,MONTHLY'
+            startDate:
+              type: string
+              format: date
+              description: >
+                'Start date of the backup shall be run required only when frequency is DAILY,WEEKLY,MONTHLY'
           not:
             anyOf:
               - required: [runOnceAt]

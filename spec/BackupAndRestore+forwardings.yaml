@@ -140,7 +140,7 @@ forwardings:
         uuid: bar-1-0-0-op-s-is-011
     consequent-requests:
       - client-name: ExecutionAndTraceLog://v1/record-service-request
-        uuid: bar-1-0-0-op-c-bs-eatl-1-0-0-000
+        uuid: bar-1-0-0-op-c-bs-eatl-2-1-2-000
 
   - forwarding-name: OamRequestCausesLoggingRequest
     uuid: bar-1-0-0-op-fc-bm-003
