@@ -4024,7 +4024,7 @@ paths:
       - IndividualServices
       summary: Initiates authentication of the user and get the server configuration
         from Elastic search
-      operationId: getServerConfiguration
+      operationId: retrieveServerConfiguration
       parameters:
       - name: user
         in: header

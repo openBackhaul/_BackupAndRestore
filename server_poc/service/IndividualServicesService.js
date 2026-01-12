@@ -1,5 +1,10 @@
 'use strict';
 
+var serverConfigurationService = require('./individualServices/ServerConfigurationService');
+var elasticsearchPreparation = require('./individualServices/ElasticsearchPreparation')
+var backupScheduleService = require('./individualServices/BackupScheduleService')
+const { elasticsearchService, getIndexAliasAsync } = require('onf-core-model-ap/applicationPattern/services/ElasticsearchService');
+const createHttpError = require('http-errors');
 
 /**
  * Initiates authentication of the user and aborts backup job by its Id
@@ -102,9 +107,50 @@ exports.createBackupSchedule = function(body,user,originator,xCorrelator,traceIn
  * customerJourney String Holds information supporting customer’s journey to which the execution applies
  * no response value expected for this operation
  **/
-exports.createServerConfiguration = function(body,user,originator,xCorrelator,traceIndicator,customerJourney) {
-  return new Promise(function(resolve, reject) {
-    resolve();
+exports.createServerConfiguration = function(body) {
+   return new Promise(async function (resolve, reject) {
+    try {
+
+      let took;
+
+      //Construct serverId
+      const serverId = await serverConfigurationService.getServerId()
+      body["server-id"] = serverId;
+      body["server-name"] = body["serverName"];
+      delete body["serverName"]
+
+      //Get Elastic search index
+      const uuid = await elasticsearchPreparation.getCorrectBackupEsUuid("000");
+      const client = await elasticsearchService.getClient(false, uuid);
+      const indexAlias = await getIndexAliasAsync(uuid);
+
+      //Check if Document with server name exists
+      let document = await serverConfigurationService.getDocumentIdAsync(body["server-name"]);
+      //create server configuration in elastic search
+      let result;
+      if (document && !(document.hits)) {
+        let startTime = process.hrtime();
+        result = await client.index({
+          index: indexAlias,
+          body: body
+        });
+        let backendTime = process.hrtime(startTime);
+        took = (backendTime[0] * 1000 + backendTime[1] / 1000000) + document.took;
+        if (result && result.body.result !== 'created') {
+          throw new Error("server configuration was not added to ES.");
+        }
+      } else {
+        throw createHttpError(409, 'Servername already exists');
+      }
+
+      resolve({
+        "responseBody": "",
+        "took": took
+      });
+    } catch (error) {
+      console.error("Failed to create server configuration:", error);
+      reject(error);
+    }
   });
 }
 
@@ -201,22 +247,33 @@ exports.getBackupScheduleById = function(user,originator,xCorrelator,traceIndica
  * serverName String Name of the configured server
  * returns inline_response_200_1
  **/
-exports.getServerConfiguration = function(user,originator,xCorrelator,traceIndicator,customerJourney,serverName) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "password-at-file-server" : "password-at-file-server",
-  "ssh-key" : "ssh-key",
-  "retention-period" : 0,
-  "username-at-file-server" : "username-at-file-server",
-  "serverName" : "serverName",
-  "serverId" : "serverId",
-  "destination-url" : "destination-url"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+exports.retrieveServerConfiguration = function(serverName) {
+  return new Promise(async function (resolve, reject) {
+    try {
+      let response = {};
+      let took;
+      //Get Document with server name
+      let document = await serverConfigurationService.getDocumentIdAsync(serverName);
+
+      //create server configuration in elastic search
+      if (document && !(document.hits)) {
+        throw createHttpError(404, 'Document with given serverName not found');
+      } else {
+        if (document.hits._source) {
+          response = document.hits._source;
+          took = document.took;
+        } else {
+          throw createHttpError(404, 'Document with source field not found');
+        }
+      }
+
+      resolve({
+        "responseBody": response,
+        "took": took
+      });
+    } catch (error) {
+      console.error("Failed to fetch server configuration:", error);
+      reject(error);
     }
   });
 }
@@ -329,18 +386,16 @@ exports.listBackupJobsInGui = function(user,originator,xCorrelator,traceIndicato
  * customerJourney String Holds information supporting customer’s journey to which the execution applies
  * returns inline_response_200
  **/
-exports.listConfiguredServerNamesInGui = function(user,originator,xCorrelator,traceIndicator,customerJourney) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "serverNameList" : [ "serverNameList", "serverNameList" ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.listConfiguredServerNamesInGui = async function() {
+  let serverNameListResponse = await serverConfigurationService.getServerNamesAsync();
+  let serverNameObjectList = serverNameListResponse.serverNameList;
+  const serverNameList = serverNameObjectList.flatMap(serverName => serverName["server-name"]);
+  return {
+    "body": {
+      "serverNameList": serverNameList
+    },
+    "took": serverNameListResponse.took
+  };
 }
 
 

@@ -8,7 +8,7 @@ const { customAlphabet } = require('nanoid');
    * @returns {Promise<Object>} { id, took }
    */
 exports.getDocumentIdAsync = async function (serverName) {
-  const uuid = await elasticsearchPreparation.getCorrectBackupEsUuid("002");
+  const uuid = await elasticsearchPreparation.getCorrectBackupEsUuid("000");
   const client = await elasticsearchService.getClient(false, uuid);
   const indexAlias = await getIndexAliasAsync(uuid);
   let result = await client.search({
@@ -34,7 +34,7 @@ exports.getDocumentIdAsync = async function (serverName) {
  * @returns {Promise<Object>} { serverNamesList, took }
  **/
 exports.getServerNamesAsync = async function () {
-  const uuid = await elasticsearchPreparation.getCorrectBackupEsUuid("002");
+  const uuid = await elasticsearchPreparation.getCorrectBackupEsUuid("000");
   const client = await elasticsearchService.getClient(false, uuid);
   const indexAlias = await getIndexAliasAsync(uuid);
   let res = await client.search({
