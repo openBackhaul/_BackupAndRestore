@@ -1194,7 +1194,7 @@ paths:
         - $ref: '#/components/parameters/trace-indicator'
         - $ref: '#/components/parameters/customer-journey'
     get:
-      operationId: getServerConfiguration
+      operationId: retrieveServerConfiguration
       summary: 'Initiates authentication of the user and get the server configuration from Elastic search'
       tags:
         - IndividualServices
