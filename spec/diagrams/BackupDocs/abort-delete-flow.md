@@ -3,23 +3,23 @@
 ## Abort Backup Job
 
 ### API
-`POST /v1/backup-jobs/{jobId}/abort`
+`POST /v1/abort-backup-job`
 
 ### Behavior
-- Stops future NE execution
-- Running NEs are allowed to complete
+- Stops future device execution
+- Running devices are allowed to complete
 
 ### Processing
-1. Mark IDLE NEs as ABORTED
-2. Stop scheduling new NEs
-3. Let the Running NEs complete
+1. Mark IDLE devices as ABORTED
+2. Stop scheduling new devices
+3. Let the Running devices complete
 
 ---
 
-## Delete Backup Schedule
+## Cancel Backup Schedule
 
 ### API
-`DELETE /v1/backup-schedules/{scheduleId}`
+`POST /v1/cancel-backup-schedule`
 
 ### Behavior
 - Prevents future job creation

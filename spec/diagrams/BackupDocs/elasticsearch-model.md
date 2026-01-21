@@ -4,7 +4,7 @@ This document describes how Backup & Restore data is stored and
 tracked in Elasticsearch.
 
 Elasticsearch is the **system of record** for schedules, jobs, and
-per-NE execution state.
+per-device execution state.
 
 ---
 
@@ -14,7 +14,7 @@ per-NE execution state.
 |-----------|--------|
 | backup-schedules | Stores schedule definitions |
 | backup-job-execution | Stores runtime job executions |
-| backup-job-ne-executions | Tracks per-NE execution state |
+| backup-job-ne-executions | Tracks per-device execution state |
 | server-configuration | Stores server configuration |
 ---
 
@@ -45,8 +45,8 @@ Key fields:
 - forceUpload
 
 Notes:
-- No NE IDs stored
-- Used by scheduler loop only
+- No mount names are stored
+- Used by scheduler only
 
 ---
 
@@ -75,7 +75,7 @@ Notes:
 
 ---
 
-## ne-executions Index
+## device-executions Index
 
 Tracks execution per device.
 

@@ -1,7 +1,7 @@
 # Modify Backup Schedule – Flow
 
 ## API
-`PUT /v1/backup-schedules/{scheduleId}`
+`POST /v1/update-backup-schedule`
 
 ## Editable Fields
 - runAtTime(for Weekly/Monthly/Daily) 

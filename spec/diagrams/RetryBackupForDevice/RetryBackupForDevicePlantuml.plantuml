@@ -1,5 +1,5 @@
 @startuml
-title Retry NE Backup Flow
+title Retry Device Backup Flow
 
 actor User
 participant UI
@@ -13,8 +13,8 @@ participant "ODL Controller" as ODL
 
 == Retry Request ==
 
-User -> UI : Click Retry on failed NE
-UI -> API : POST /v1/retry-backup-of-ne
+User -> UI : Click Retry on failed device
+UI -> API : POST /v1/retry-backup-of-device
 
 API -> Auth : Authenticate & authorize
 Auth --> API : OK
@@ -22,10 +22,10 @@ Auth --> API : OK
 API -> OAV : Validate request
 OAV --> API : Valid
 
-== Fetch NE Execution ==
+== Fetch device Execution ==
 
-API -> ES_NE : Get NE execution(jobId, neId)
-ES_NE --> API : NE execution details
+API -> ES_NE : Get device execution(jobId, neId)
+ES_NE --> API : device execution details
 
 note right of API
 Expected:
@@ -41,10 +41,10 @@ alt Status != FAILED
   Service --> API : Retry not allowed
   API --> UI : INVALID_NE_STATE
 else Retry allowed
-  Service -> ES_NE : Update NE execution
+  Service -> ES_NE : Update device execution
   note right of ES_NE
   {
-    ne-backup-status: ONGOING,
+    device-backup-status: ONGOING,
     retryAttempts: +1,
     startTime: now(),
     endTime: null,
@@ -55,14 +55,14 @@ end
 
 == Trigger Backup ==
 
-Service -> Orchestrator : Trigger NE backup(jobId, neId)
+Service -> Orchestrator : Trigger device backup(jobId, neId)
 Orchestrator -> ODL : Invoke backup on device
 ODL --> Orchestrator : ACK
 
 == Async Completion ==
 
 ODL --> Orchestrator : Backup result
-Orchestrator -> ES_NE : Update NE execution
+Orchestrator -> ES_NE : Update device execution
 note right of ES_NE
 Success:
 - neBackupStatus: COMPLETED

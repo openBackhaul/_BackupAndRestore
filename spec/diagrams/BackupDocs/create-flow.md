@@ -1,7 +1,7 @@
 # Create Backup Schedule – Flow
 
 ## API
-`POST /v1/backup-schedule`
+`POST /v1/regard-backup-schedule`
 
 ## Internal Processing
 

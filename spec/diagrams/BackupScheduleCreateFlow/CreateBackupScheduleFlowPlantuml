@@ -89,8 +89,8 @@ note right of Orchestrator
  mount-name-list : []
 }
 end note
-MWDI -> Orchestrator: metadata of the conneced NEs
-Orchestrator -> Orchestrator : Filter eligible NEs
+MWDI -> Orchestrator: metadata of the conneced devices
+Orchestrator -> Orchestrator : Filter eligible devices
 
 note right of Orchestrator
 Filter:
@@ -118,7 +118,7 @@ jobUpdatedTime
 }
 end note
 
-Orchestrator -> NEES : Create NE execution entries
+Orchestrator -> NEES : Create device execution entries
 note right of NEES
 {
  neId,
@@ -130,8 +130,8 @@ note right of NEES
 }
 end note
 
-== NE Execution ==
- loop for each NE
+== Device Execution ==
+ loop for each device
     Orchestrator -> ODL: /rests/operations/network-topology:network-topology/topology=topology-netconf/node=<nodename>/yang-ext:mount/backup-and-restore-1-0:backup-system
 
     note right of Orchestrator
@@ -146,12 +146,12 @@ end note
     end note
 
     ODL -> Orchestrator : Result(SUCCESS/FAILED)
-    Orchestrator -> Notifications : NE ID
+    Orchestrator -> Notifications : mount name
     Notifications -> kafka : Listen to attribute value change notifications for backup and restore
     kafka -> Notifications : attribute value change notifications 
-    Notifications <- Notifications : check for backup completed, ongoing notifications of that NE
+    Notifications <- Notifications : check for backup completed, ongoing notifications of that device
     Notifications -> Orchestrator : status
-    Orchestrator -> NEES : Update NE status
+    Orchestrator -> NEES : Update device status
  end
 
 == Job Completion ==
@@ -180,16 +180,16 @@ end note
  JobES --> API
  API --> UI : Show job list
  
- UI -> API : /v1/list-backup-job-nes-in-gui
- API -> NEES : Fetch NE executions
+ UI -> API : /v1/list-devices-of-backup-job-in-gui
+ API -> NEES : Fetch device executions
  NEES -> API
- API -> UI : Show NE progress
+ API -> UI : Show device progress
  
 == Retry & Abort ==
 
-UI -> API : POST /v1/retry-backup-of-ne
+UI -> API : POST /v1/retry-backup-of-device
 API -> NEES : Update retry metadata
-API -> Orchestrator : Retry NE backup
+API -> Orchestrator : Retry device backup
 
 UI -> API : /v1/abort-backup-job
 API -> JobES : Mark job Aborted

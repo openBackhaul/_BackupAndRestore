@@ -3972,7 +3972,7 @@ paths:
       - $ref: '#/components/parameters/trace-indicator'
       - $ref: '#/components/parameters/customer-journey'
     post:
-      operationId: listBackupJobNEsInGui
+      operationId: listDevicesOfBackupJobInGui
       summary: 'Initiates authentication of the user and lists network elements for a backup job'
       tags:
         - IndividualServices
