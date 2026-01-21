@@ -4044,15 +4044,15 @@ paths:
                       type: object
                       required:
                         - mount-name
-                        - ne-backup-status
+                        - device-backup-status
                         - start-time
-                        - ne-connection-status
+                        - device-connection-status
                       properties:
                         mount-name:
                           type: string
                           description: >
                             'mount name'
-                        ne-backup-status:
+                        device-backup-status:
                           type: string
                           enum: [IDLE, ONGOING, COMPLETED, FAILED]
                         retry-eligible:
@@ -4072,7 +4072,7 @@ paths:
                         backup-file-stored-path:
                           type: string
                           description: Path where backup file is stored if status is completed
-                        ne-connection-status:
+                        device-connection-status:
                           type: string
                           enum:
                             - 'connected'
@@ -4087,22 +4087,22 @@ paths:
                   - mount-name: 'ne0001'
                     start-time: '2025-12-25T14:30:00Z'
                     end-time: '2025-12-25T14:30:00Z'
-                    ne-backup-status: 'COMPLETED'
+                    device-backup-status: 'COMPLETED'
                     retry-eligible: false
-                    ne-connection-status: 'connected'
+                    device-connection-status: 'connected'
                     backup-file-stored-path: 'sftp://127.0.0.1/backup/'
                   - mount-name: 'ne0002'
                     start-time: '2025-12-25T14:30:00Z'
                     end-time: ''
-                    ne-backup-status: 'ONGOING'
-                    ne-connection-status: 'connected'
+                    device-backup-status: 'ONGOING'
+                    device-connection-status: 'connected'
                     retry-eligible: false
                   - mount-name: 'ne0003'
                     start-time: '2025-12-25T14:30:00Z'
                     end-time: '2025-12-25T14:30:00Z'
-                    ne-backup-status: 'FAILED'
+                    device-backup-status: 'FAILED'
                     retry-eligible: true
-                    ne-connection-status: 'connected'
+                    device-connection-status: 'connected'
                     error-message: 'device not reachable'
           headers:
             x-correlator:
@@ -4273,15 +4273,15 @@ paths:
                           type: object
                           required:
                             - mount-name
-                            - ne-backup-status
-                            - ne-connection-status
+                            - device-backup-status
+                            - device-connection-status
                             - start-time
                           properties:
                             mount-name:
                               type: string
                               description: >
                                 'mount name'
-                            ne-backup-status:
+                            device-backup-status:
                               type: string
                               enum: [IDLE, ONGOING, COMPLETED, FAILED]
                             retry-eligible:
@@ -4301,7 +4301,7 @@ paths:
                             backup-file-stored-path:
                               type: string
                               description: Path where backup file is stored if status is completed
-                            ne-connection-status:
+                            device-connection-status:
                               type: string
                               enum:
                                 - 'connected'
@@ -4313,25 +4313,25 @@ paths:
                           mount-name: 'ne0001'
                           start-time: '2025-12-25T14:30:00Z'
                           end-time: '2025-12-25T14:30:00Z'
-                          ne-backup-status: 'COMPLETED'
+                          device-backup-status: 'COMPLETED'
                           retry-eligible: false
                           backup-file-stored-path: 'sftp://127.0.0.1/backup/'
-                          ne-connection-status: 'connected'
+                          device-connection-status: 'connected'
                         - job-id: 'job-1'
                           mount-name: 'ne0002'
                           start-time: '2025-12-25T14:30:00Z'
                           end-time: ''
-                          ne-backup-status: 'ONGOING'
+                          device-backup-status: 'ONGOING'
                           retry-eligible: false
-                          ne-connection-status: 'connected'
+                          device-connection-status: 'connected'
                         - job-id: 'job-1'
                           mount-name: 'ne0003'
                           start-time: '2025-12-25T14:30:00Z'
                           end-time: '2025-12-25T14:30:00Z'
-                          ne-backup-status: 'FAILED'
+                          device-backup-status: 'FAILED'
                           retry-eligible: true
                           error-message: 'device not reachable'
-                          ne-connection-status: 'connected'
+                          device-connection-status: 'connected'
                 '400':
                   $ref: '#/components/responses/responseForErroredServiceRequests'
                 '401':
@@ -4398,7 +4398,7 @@ paths:
                   required:
                     - job-id
                     - mount-name
-                    - ne-backup-status
+                    - device-backup-status
                   properties:
                     mount-name:
                       type: string
@@ -4409,10 +4409,10 @@ paths:
                       pattern: "^job-[A-Za-z0-9_-]{4,32}$"
                       description: >
                         'Auto generated Job Id for the scheduled job'
-                    ne-backup-status:
+                    device-backup-status:
                       type: string
                       enum: [ONGOING]
-                    ne-connection-status:
+                    device-connection-status:
                       type: string
                       enum:
                         - 'connected'
@@ -4425,9 +4425,9 @@ paths:
                 example:
                   - job-id: 'job-1'
                     mount-name: 'ne0001'
-                    ne-backup-status: 'ONGOING'
+                    device-backup-status: 'ONGOING'
                     retry-eligible: false
-                    ne-connection-status: 'connected'
+                    device-connection-status: 'connected'
             headers:
               x-correlator:
                 $ref: '#/components/headers/x-correlator'
@@ -4572,8 +4572,8 @@ paths:
                           required:
                             - job-id
                             - mount-name
-                            - ne-backup-status
-                            - ne-connection-status
+                            - device-backup-status
+                            - device-connection-status
                             - start-time
                             - end-time
                             - error-message
@@ -4587,7 +4587,7 @@ paths:
                               type: string
                               description: >
                                 'Unique identifier of the network element'
-                            ne-backup-status:
+                            device-backup-status:
                               type: string
                               enum: [IDLE, ONGOING, COMPLETED, FAILED]
                             retry-eligible:
@@ -4607,7 +4607,7 @@ paths:
                             retry-attempt:
                               type: integer
                               description: Attempted number for retry
-                            ne-connection-status:
+                            device-connection-status:
                               type: string
                               enum:
                                 - 'connected'
@@ -4619,10 +4619,10 @@ paths:
                           mount-name : 'ne0001'
                           start-time: '2025-12-25T14:30:00Z'
                           end-time: ''
-                          ne-backup-status: 'ONGOING'
+                          device-backup-status: 'ONGOING'
                           retry-eligible: false
                           retry-attempt : 1
-                          ne-connection-status: 'connected'
+                          device-connection-status: 'connected'
                 responses:
                   '204':
                     description: 'Retry Status Updated'
