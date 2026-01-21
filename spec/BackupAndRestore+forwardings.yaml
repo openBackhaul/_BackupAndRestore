@@ -1,0 +1,989 @@
+forwardings:
+
+  - forwarding-name: PromptForRegisteringCausesRegistrationRequest
+    uuid: bar-1-0-0-op-fc-bm-999
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/register-yourself
+          uuid: bar-1-0-0-op-s-bm-000
+      fc-port-update:
+        - server-name: /v1/register-yourself
+          uuid: bar-1-0-0-op-s-bm-000
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/register-yourself
+        uuid: bar-1-0-0-op-s-bm-000
+    consequent-requests:
+      - client-name: RegistryOffice://v2/register-application
+        uuid: bar-1-0-0-op-c-bm-ro-1-0-0-000
+
+  - forwarding-name: PromptForRegisteringCausesRegistrationRequest2
+    uuid: bar-1-0-0-op-fc-bm-000
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/register-yourself
+          uuid: bar-1-0-0-op-s-bm-000
+      fc-port-update:
+        - server-name: /v1/register-yourself
+          uuid: bar-1-0-0-op-s-bm-000
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/register-yourself
+        uuid: bar-1-0-0-op-s-bm-000
+    consequent-requests:
+      - client-name: RegistryOffice://v2/register-application
+        uuid: bar-1-0-0-op-c-bm-ro-1-0-0-000
+
+  - forwarding-name: PromptForEmbeddingCausesRequestForBequeathingData
+    uuid: bar-1-0-0-op-fc-bm-001
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/embed-yourself
+        uuid: bar-1-0-0-op-s-bm-001
+    consequent-requests:
+      - client-name: OldRelease://v1/bequeath-your-data-and-die
+        uuid: bar-1-0-0-op-c-bm-or-2-1-1-000
+
+  - forwarding-name: ServiceRequestCausesLoggingRequest
+    uuid: bar-1-0-0-op-fc-bm-002
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-service-request-information
+          uuid: bar-1-0-0-op-s-bm-002
+      fc-port-update:
+        - server-name: /v1/redirect-service-request-information
+          uuid: bar-1-0-0-op-s-bm-002
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/register-yourself
+        uuid: bar-1-0-0-op-s-bm-000
+      - server-name: /v1/embed-yourself
+        uuid: bar-1-0-0-op-s-bm-001
+      - server-name: /v1/redirect-service-request-information
+        uuid: bar-1-0-0-op-s-bm-002
+      - server-name: /v1/redirect-oam-request-information
+        uuid: bar-1-0-0-op-s-bm-003
+      - server-name: /v1/end-subscription
+        uuid: bar-1-0-0-op-s-bm-004
+      - server-name: /v1/inquire-oam-request-approvals
+        uuid: bar-1-0-0-op-s-bm-005
+      - server-name: /v1/update-client
+        uuid: bar-1-0-0-op-s-bm-007
+      - server-name: /v1/list-ltps-and-fcs
+        uuid: bar-1-0-0-op-s-bm-008
+      - server-name: /v1/redirect-topology-change-information
+        uuid: bar-1-0-0-op-s-bm-009
+      - server-name: /v1/update-operation-key
+        uuid: bar-1-0-0-op-s-bm-010
+      - server-name: /v1/update-operation-client
+        uuid: bar-1-0-0-op-s-bm-011
+      - server-name: /v1/inquire-basic-auth-approvals
+        uuid: bar-1-0-0-op-s-bm-012
+      - server-name: /v1/dispose-remainders-of-deregistered-application
+        uuid: bar-1-0-0-op-s-bm-013
+      - server-name: /v1/inform-about-preceding-release
+        uuid: bar-1-0-0-op-s-bm-014
+      - server-name: /v1/update-client-of-subsequent-release
+        uuid: bar-1-0-0-op-s-bm-015
+      - server-name: /v1/bequeath-your-data-and-die
+        uuid: bar-1-0-0-op-s-im-000
+      - server-name: /v1/start-application-in-generic-representation
+        uuid: bar-1-0-0-op-s-bs-000
+      - server-name: /v1/inform-about-application
+        uuid: bar-1-0-0-op-s-bs-001
+      - server-name: /v1/inform-about-application-in-generic-representation
+        uuid: bar-1-0-0-op-s-bs-002
+      - server-name: /v1/inform-about-release-history
+        uuid: bar-1-0-0-op-s-bs-003
+      - server-name: /v1/inform-about-release-history-in-generic-representation
+        uuid: bar-1-0-0-op-s-bs-004
+      - server-name: /docs
+        uuid: bar-1-0-0-op-s-bs-005
+      - server-name: /v1/start-gui
+        uuid: bar-1-0-0-op-s-is-000
+      - server-name: /v1/list-configured-server-names-in-gui
+        uuid: bar-1-0-0-op-s-is-001
+      - server-name: /v1/server-configuration
+        uuid: bar-1-0-0-op-s-is-002
+      - server-name: /v1/server-configuration/{server-id}
+        uuid: bar-1-0-0-op-s-is-012
+      - server-name: /v1/server-configuration/{server-name}
+        uuid: bar-1-0-0-op-s-is-013
+      - server-name: /v1/backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
+      - server-name: /v1/list-scheduled-backups-in-gui
+        uuid: bar-1-0-0-op-s-is-004
+      - server-name: /v1/backup-schedules/{scheduleId}
+        uuid: bar-1-0-0-op-s-is-005
+      - server-name: /v1/list-backup-jobs-in-gui
+        uuid: bar-1-0-0-op-s-is-006
+      - server-name: /v1/backup-jobs/{jobId}
+        uuid: bar-1-0-0-op-s-is-007
+      - server-name: /v1/list-backup-job-nes-in-gui/{jobId}
+        uuid: bar-1-0-0-op-s-is-008
+      - server-name: /v1/backup-jobs/{jobId}/nes/{neId}
+        uuid: bar-1-0-0-op-s-is-009
+      - server-name: /v1/backup-jobs/{jobId}/abort
+        uuid: bar-1-0-0-op-s-is-010
+      - server-name: /v1/login
+        uuid: bar-1-0-0-op-s-is-011
+    consequent-requests:
+      - client-name: ExecutionAndTraceLog://v1/record-service-request
+        uuid: bar-1-0-0-op-c-bs-eatl-2-1-2-000
+
+  - forwarding-name: OamRequestCausesLoggingRequest
+    uuid: bar-1-0-0-op-fc-bm-003
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-oam-request-information
+          uuid: bar-1-0-0-op-s-bm-003
+      fc-port-update:
+        - server-name: /v1/redirect-oam-request-information
+          uuid: bar-1-0-0-op-s-bm-003
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      # [all oam requests]
+    consequent-requests:
+      - client-name: OamLog://v1/record-oam-request
+        uuid: bar-1-0-0-op-c-bs-ol-1-0-0-000
+
+  - forwarding-name: BasicAuthRequestCausesInquiryForAuthentication
+    uuid: bar-1-0-0-op-fc-bm-005
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/inquire-basic-auth-approvals
+          uuid: bar-1-0-0-op-s-bm-012
+        - server-name: /v1/inquire-oam-request-approvals
+          uuid: bar-1-0-0-op-s-bm-005
+      fc-port-update:
+        - server-name: /v1/inquire-basic-auth-approvals
+          uuid: bar-1-0-0-op-s-bm-012
+        - server-name: /v1/inquire-oam-request-approvals
+          uuid: bar-1-0-0-op-s-bm-005
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-applications-in-gui
+        uuid: bar-1-0-0-op-s-is-071
+      - server-name: /v1/approve-application-in-gui
+        uuid: bar-1-0-0-op-s-is-072
+      - server-name: /v1/document-embedding-status-in-gui
+        uuid: bar-1-0-0-op-s-is-073
+    consequent-requests:
+      - client-name: AccessAdministration://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-1-0-0-000
+
+  - forwarding-name: PromptForBequeathingDataCausesRequestForDeregisteringOfOldRelease
+    uuid: bar-1-0-0-op-fc-bm-106
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+      fc-port-update:
+        - server-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/bequeath-your-data-and-die
+        uuid: bar-1-0-0-op-s-im-000
+    consequent-requests:
+      - client-name: RegistryOffice://v1/deregister-application
+        uuid: bar-1-0-0-op-c-bm-ro-1-0-0-002
+
+  - forwarding-name: PromptForBequeathingDataCausesRequestForBroadcastingInfoAboutServerReplacement
+    uuid: bar-1-0-0-op-fc-bm-105
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+      fc-port-update:
+        - server-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/bequeath-your-data-and-die
+        uuid: bar-1-0-0-op-s-im-000
+    consequent-requests:
+      - client-name: RegistryOffice://v1/relay-server-replacement
+        uuid: bar-1-0-0-op-c-bm-ro-2-1-2-001
+
+  - forwarding-name: PromptForEmbeddingCausesSubscribingForDeviceChangeNotificationsAtKafka
+    uuid: bar-1-0-0-op-fc-im-000
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/embed-yourself
+        uuid: bar-1-0-0-op-s-bm-001
+    consequent-requests:
+      - client-name: KafkaMessageBroker
+        uuid: bar-1-0-0-kmb-c-kmb-1-0-0-000
+  
+  - forwarding-name: PromptForEmbeddingCausesCylicPollingOfDeviceChangeNotificationsFromKafka
+    uuid: bar-1-0-0-op-fc-im-001
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/embed-yourself
+        uuid: bar-1-0-0-op-s-bm-001
+    consequent-requests:
+      - client-name: KafkaMessageBroker
+        uuid: bar-1-0-0-kmb-c-kmb-1-0-0-000
+
+  - forwarding-name: PromptForBequeathingDataCausesUnsubscribingFromDeviceChangeNotificationsAtKafka
+    uuid: bar-1-0-0-op-fc-im-115
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/bequeath-your-data-and-die
+        uuid: bar-1-0-0-op-s-im-000
+    consequent-requests:
+      - client-name: KafkaMessageBroker
+        uuid: bar-1-0-0-kmb-c-kmb-1-0-0-000
+
+  - forwarding-name: PromptForBequeathingDataCausesRequestForDeregisteringOfOldRelease
+    uuid: bar-1-0-0-op-fc-bm-106
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+      fc-port-update:
+        - server-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/bequeath-your-data-and-die
+        uuid: bar-1-0-0-op-s-im-000
+    consequent-requests:
+      - client-name: RegistryOffice://v1/deregister-application
+        uuid: bar-1-0-0-op-c-bm-ro-2-1-2-002
+
+  - forwarding-name: PromptingNewReleaseForUpdatingServerCausesRequestForBroadcastingInfoAboutBackwardCompatibleUpdateOfOperation
+    uuid: bar-1-0-0-op-fc-bm-107
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+      fc-port-update:
+        - server-name: /v1/embed-yourself
+          uuid: bar-1-0-0-op-s-bm-001
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/update-client
+        uuid: bar-1-0-0-op-s-bm-007
+    consequent-requests:
+      - client-name: RegistryOffice://v1/relay-operation-update
+        uuid: bar-1-0-0-op-c-bm-ro-2-1-2-003
+  
+  - forwarding-name: ServiceRequestCausesLtpUpdateRequest
+    uuid: bar-1-0-0-op-fc-bm-006
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/register-yourself
+        uuid: bar-1-0-0-op-s-bm-000
+      - server-name: /v1/embed-yourself
+        uuid: bar-1-0-0-op-s-bm-001
+      - server-name: /v1/redirect-service-request-information
+        uuid: bar-1-0-0-op-s-bm-002
+      - server-name: /v1/redirect-oam-request-information
+        uuid: bar-1-0-0-op-s-bm-003
+      - server-name: /v1/inquire-oam-request-approvals
+        uuid: bar-1-0-0-op-s-bm-005
+      - server-name: /v1/update-client
+        uuid: bar-1-0-0-op-s-bm-007
+      - server-name: /v1/redirect-topology-change-information
+        uuid: bar-1-0-0-op-s-bm-009
+      - server-name: /v1/update-operation-client
+        uuid: bar-1-0-0-op-s-bm-011
+      - server-name: /v1/inquire-basic-auth-approvals
+        uuid: bar-1-0-0-op-s-bm-012
+      - server-name: /v1/update-client-of-subsequent-release
+        uuid: bar-1-0-0-op-s-bm-015
+      - server-name: /v1/bequeath-your-data-and-die
+        uuid: bar-1-0-0-op-s-im-000
+      - server-name: /v1/redirect-info-about-approval-status-changes
+        uuid: bar-1-0-0-op-s-is-006
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/update-ltp
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-001
+
+  - forwarding-name: ServiceRequestCausesLtpDeletionRequest
+    uuid: bar-1-0-0-op-fc-bm-007
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/dispose-remainders-of-deregistered-application
+        uuid: bar-1-0-0-op-s-bm-013
+      - server-name: /v1/disregard-application
+        uuid: bar-1-0-0-op-s-is-002
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/delete-ltp-and-dependents
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-002
+
+  - forwarding-name: ServiceRequestCausesFcUpdateRequest
+    uuid: bar-1-0-0-op-fc-bm-008
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/update-fc
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-003
+
+  - forwarding-name: ServiceRequestCausesFcPortUpdateRequest
+    uuid: bar-1-0-0-op-fc-bm-009
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/update-fc-port
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-004
+
+  - forwarding-name: ServiceRequestCausesFcPortDeletionRequest
+    uuid: bar-1-0-0-op-fc-bm-010
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/end-subscription
+        uuid: bar-1-0-0-op-s-bm-004
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/delete-fc-port
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-005
+
+  - forwarding-name: OamRequestCausesLtpUpdateRequest
+    uuid: bar-1-0-0-op-fc-bm-011
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/update-ltp
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-001
+
+  - forwarding-name: OamRequestCausesLtpDeletionRequest
+    uuid: bar-1-0-0-op-fc-bm-012
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/delete-ltp-and-dependents
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-002
+
+  - forwarding-name: OamRequestCausesFcUpdateRequest
+    uuid: bar-1-0-0-op-fc-bm-013
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/update-fc
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-003
+
+  - forwarding-name: OamRequestCausesFcPortUpdateRequest
+    uuid: bar-1-0-0-op-fc-bm-014
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/update-fc-port
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-004
+
+  - forwarding-name: OamRequestCausesFcPortDeletionRequest
+    uuid: bar-1-0-0-op-fc-bm-015
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-update:
+        - server-name: /v1/redirect-topology-change-information
+          uuid: bar-1-0-0-op-s-bm-009
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+    consequent-requests:
+      - client-name: ApplicationLayerTopology://v1/delete-fc-port
+        uuid: bar-1-0-0-op-c-bm-alt-1-0-0-005
+
+  - forwarding-name: GuiRequestForVisualizingListOfConfiguredServerNamesCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-001
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-configured-server-names-in-gui
+        uuid: bar-1-0-0-op-s-is-001
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForVisualizingListOfConfiguredServerNamesCauses.RetrievingListOfConfiguredServerNamesFromApplicationData
+    uuid: bar-1-0-0-op-fc-is-002
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-configured-server-names-in-gui
+        uuid: bar-1-0-0-op-s-is-001
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-000
+  
+  - forwarding-name: GuiRequestForRegardingSftpServerConfigurationCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-003
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/regard-sftp-server-configuration
+        uuid: bar-1-0-0-op-s-is-002
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForRegardingSftpServerConfigurationCauses.StoringOfSftpServerConfigurationInApplicationData
+    uuid: bar-1-0-0-op-fc-is-004
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/regard-sftp-server-configuration
+        uuid: bar-1-0-0-op-s-is-002
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-000
+  
+  - forwarding-name: GuiRequestForUpdatingSftpServerConfigurationCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-005
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/update-sftp-server-configuration
+        uuid: bar-1-0-0-op-s-is-012
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForUpdatingSftpServerConfigurationCauses.StoringOfUpdatedSftpServerConfigurationInApplicationData
+    uuid: bar-1-0-0-op-fc-is-006
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/update-sftp-server-configuration
+        uuid: bar-1-0-0-op-s-is-012
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-000
+
+  - forwarding-name: GuiRequestToRetrieveSftpServerConfigurationCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-007
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/retrieve-sftp-server-configuration
+        uuid: bar-1-0-0-op-s-is-013
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestToRetrieveSftpServerConfigurationCauses.RetrievingOfConfiguredServerDetailsFromApplicationData
+    uuid: bar-1-0-0-op-fc-is-008
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/retrieve-sftp-server-configuration
+        uuid: bar-1-0-0-op-s-is-013
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-000
+
+  - forwarding-name: GuiRequestToScheduleBackupCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-009
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/regard-backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestToScheduleBackupCauses.StoringOfScheduledBackupInApplicationData
+    uuid: bar-1-0-0-op-fc-is-010
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/regard-backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-001
+
+  - forwarding-name: GuiRequestForVisualizingListOfScheduledBackupCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-011
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-scheduled-backups-in-gui
+        uuid: bar-1-0-0-op-s-is-004
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForVisualizingListOfScheduledBackupCauses.RetrievingListOfScheduledBackupsFromApplicationData
+    uuid: bar-1-0-0-op-fc-is-012
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-scheduled-backups-in-gui
+        uuid: bar-1-0-0-op-s-is-004
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-001
+
+  - forwarding-name: GuiRequestForFetchingScheduledBackupByIdCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-013
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/retrieve-backup-schedule
+        uuid: bar-1-0-0-op-s-is-005
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForFetchingScheduledBackupByIdCauses.RetrievingScheduledBackupByIdFromApplicationData
+    uuid: bar-1-0-0-op-fc-is-014
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/retrieve-backup-schedule
+        uuid: bar-1-0-0-op-s-is-005
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-001
+  
+  - forwarding-name: GuiRequestForScheduledBackupModificationByIdCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-015
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/update-backup-schedule
+        uuid: bar-1-0-0-op-s-is-014
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForScheduledBackupModificationByIdCauses.StoringOfModifiedScheduledBackupInApplicationData
+    uuid: bar-1-0-0-op-fc-is-016
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/update-backup-schedule
+        uuid: bar-1-0-0-op-s-is-014
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-001
+  
+  - forwarding-name: GuiRequestForScheduledBackupCancellationByIdCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-017
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/cancel-backup-schedule
+        uuid: bar-1-0-0-op-s-is-015
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForScheduledBackupCancellationByIdCauses.StoringOfCancelledScheduledBackupInApplicationData
+    uuid: bar-1-0-0-op-fc-is-018
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/cancel-backup-schedule
+        uuid: bar-1-0-0-op-s-is-015
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-001
+  
+  - forwarding-name: PromptForBackupCausesToTriggerBackupInDevice
+    uuid: bar-1-0-0-op-fc-is-019
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/regard-backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
+    consequent-requests:
+      - client-name: OpenDayLight://{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:backup-system
+        uuid: bar-1-0-0-op-c-is-odl-4-0-2-000
+  
+  - forwarding-name: PromptForBackupJobCreationCausesToFetchListOfConnectedDevicesFromMWDI
+    uuid: bar-1-0-0-op-fc-is-031
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/regard-backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
+    consequent-requests:
+      - client-name: /v1/provide-list-of-connected-devices
+        uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-000
+
+  - forwarding-name: PromptForBackupJobCreationCausesToFetchConnectedDevicesMetadataFromMWDI
+    uuid: bar-1-0-0-op-fc-is-031
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/regard-backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
+    consequent-requests:
+      - client-name: /v1/provide-device-status-metadata
+        uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-001
+
+  - forwarding-name: GuiRequestForVisualizingListOfBackupJobCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-020
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-backup-jobs-in-gui
+        uuid: bar-1-0-0-op-s-is-006
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForVisualizingListOfBackupJobCauses.RetrievingListOfBackupJobsFromApplicationData
+    uuid: bar-1-0-0-op-fc-is-021
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-backup-jobs-in-gui
+        uuid: bar-1-0-0-op-s-is-006
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-002
+
+  - forwarding-name: GuiRequestForFetchingBackupJobByIdCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-022
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/retrieve-backup-job
+        uuid: bar-1-0-0-op-s-is-007
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForFetchingBackupJobByIdCauses.RetrievingBackupJobByIdFromApplicationData
+    uuid: bar-1-0-0-op-fc-is-023
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/retrieve-backup-job
+        uuid: bar-1-0-0-op-s-is-007
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-002
+
+  - forwarding-name: GuiRequestForVisualizingListOfNEsInBackupJobCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-024
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-backup-job-nes-in-gui
+        uuid: bar-1-0-0-op-s-is-008
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForVisualizingListOfNEsInBackupJobCauses.RetrievingListOfNEsInBackupJobFromApplicationData
+    uuid: bar-1-0-0-op-fc-is-025
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/list-backup-job-nes-in-gui
+        uuid: bar-1-0-0-op-s-is-008
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-003
+  
+  - forwarding-name: GuiRequestForRetryBackupForNECauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-026
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/retry-backup-of-ne
+        uuid: bar-1-0-0-op-s-is-009
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestForRetryBackupForNECauses.StoringInitiationOfRetryBackupInApplicationData
+    uuid: bar-1-0-0-op-fc-is-027
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/retry-backup-of-ne
+        uuid: bar-1-0-0-op-s-is-009
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-003
+  
+  - forwarding-name: GuiRequestToAbortBackupJobByIdCauses.Authentication
+    uuid: bar-1-0-0-op-fc-is-028
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/abort-backup-job
+        uuid: bar-1-0-0-op-s-is-010
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
+
+  - forwarding-name: GuiRequestToAbortBackupJobByIdCauses.AbortingBackupJobByIdInApplicationData
+    uuid: bar-1-0-0-op-fc-is-029
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/abort-backup-job
+        uuid: bar-1-0-0-op-s-is-010
+    consequent-requests:
+      - client-name: ElasticSearch
+        uuid: bar-1-0-0-es-c-es-1-0-0-002
+  
+  - forwarding-name: GuiRequestToLoginCausesAuthentication
+    uuid: bar-1-0-0-op-fc-is-030
+    forwarding-type: InvariantProcessSnippet
+    management-requests:
+      operation-client-update:
+      fc-port-update:
+      fc-port-deletion:
+      operation-client-deletion:
+    initiating-requests:
+      - server-name: /v1/login
+        uuid: bar-1-0-0-op-s-is-011
+    consequent-requests:
+      - client-name: AA://v1/approve-basic-auth-request
+        uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
