@@ -57,7 +57,7 @@ servers:
           uuid: bar-1-0-0-op-s-bs-005
           operation-key: n.a.
       individual:
-        - operation-name: /v1/start-ne-backup-restore-gui
+        - operation-name: /v1/start-device-backup-restore-gui
           uuid: bar-1-0-0-op-s-is-000
           operation-key: n.a.
         - operation-name: /v1/list-configured-server-names-in-gui
@@ -93,10 +93,10 @@ servers:
         - operation-name: /v1/retrieve-backup-job
           uuid: bar-1-0-0-op-s-is-007
           operation-key: n.a.
-        - operation-name: /v1/list-backup-job-nes-in-gui
+        - operation-name: /v1/list-devices-of-backup-job-in-gui
           uuid: bar-1-0-0-op-s-is-008
           operation-key: n.a.
-        - operation-name: /v1/retry-backup-of-ne
+        - operation-name: /v1/retry-backup-of-device
           uuid: bar-1-0-0-op-s-is-009
           operation-key: n.a.
         - operation-name: /v1/abort-backup-job

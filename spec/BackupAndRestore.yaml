@@ -29,7 +29,7 @@ x-gui-paths:
           $ref: '#/components/responses/responseForErroredOamRequests'
         default:
           $ref: '#/components/responses/responseForErroredOamRequests'
-  /v1/start-ne-backup-restore-gui:
+  /v1/start-device-backup-restore-gui:
     get:
       operationId: startNEBackupAndRestoreGui
       summary: 'Transfers GUI module to the client side'
@@ -1874,14 +1874,14 @@ paths:
                 required:
                   - page
                   - size
-                  - totalRecords
+                  - total-records
                   - schedules
                 properties:
                   page:
                     type: integer
                   size:
                     type: integer
-                  totalRecords:
+                  total-records:
                     type: integer
                   schedules:
                     type: array
@@ -1891,7 +1891,7 @@ paths:
               example:
                   page : 1
                   size : 10
-                  totalRecords: 250
+                  total-records: 250
                   schedules :
                     - schedule-id: schedule-1
                       schedule-name: 'WeeklyBackupSchedule'
@@ -3245,14 +3245,14 @@ paths:
                 required:
                   - page
                   - size
-                  - totalRecords
+                  - total-records
                   - jobs
                 properties:
                   page:
                     type: integer
                   size:
                     type: integer
-                  totalRecords:
+                  total-records:
                     type: integer
                   jobs:
                     type: array
@@ -3262,7 +3262,7 @@ paths:
               example:
                 page : 1
                 size : 10
-                totalRecords: 250
+                total-records: 250
                 jobs:
                   - job-id: job-1
                     job-name: job-weekly-backup-timestamp
@@ -3964,7 +3964,7 @@ paths:
                   $ref: '#/components/responses/responseForErroredServiceRequests'
                 default:
                   $ref: '#/components/responses/responseForErroredServiceRequests'
-  /v1/list-backup-job-nes-in-gui:
+  /v1/list-devices-of-backup-job-in-gui:
     parameters:
       - $ref: '#/components/parameters/user'
       - $ref: '#/components/parameters/originator'
@@ -3981,7 +3981,7 @@ paths:
       parameters:
         - in: query
           name: status
-          description: Filter by NE status
+          description: Filter by device status
           schema:
             type: string
             enum: [IDLE, ONGOING, COMPLETED, FAILED]
@@ -4028,30 +4028,30 @@ paths:
                 required:
                   - page
                   - size
-                  - totalRecords
-                  - neList
+                  - total-records
+                  - mount-name-list
                 properties:
                   page:
                     type: integer
                   size:
                     type: integer
-                  totalRecords:
+                  total-records:
                     type: integer
-                  neList:
+                  mount-name-list:
                     type: array
                     uniqueItems: true
                     items:
                       type: object
                       required:
-                        - ne-id
+                        - mount-name
                         - ne-backup-status
                         - start-time
                         - ne-connection-status
                       properties:
-                        ne-id:
+                        mount-name:
                           type: string
                           description: >
-                            'NE Id'
+                            'mount name'
                         ne-backup-status:
                           type: string
                           enum: [IDLE, ONGOING, COMPLETED, FAILED]
@@ -4082,28 +4082,28 @@ paths:
               example:
                 page : 1
                 size : 10
-                totalRecords: 250
-                neList:
-                  - ne-id: 'ne0001'
+                total-records: 250
+                mount-name-list:
+                  - mount-name: 'ne0001'
                     start-time: '2025-12-25T14:30:00Z'
                     end-time: '2025-12-25T14:30:00Z'
                     ne-backup-status: 'COMPLETED'
                     retry-eligible: false
                     ne-connection-status: 'connected'
                     backup-file-stored-path: 'sftp://127.0.0.1/backup/'
-                  - ne-id: 'ne0002'
+                  - mount-name: 'ne0002'
                     start-time: '2025-12-25T14:30:00Z'
                     end-time: ''
                     ne-backup-status: 'ONGOING'
                     ne-connection-status: 'connected'
                     retry-eligible: false
-                  - ne-id: 'ne0003'
+                  - mount-name: 'ne0003'
                     start-time: '2025-12-25T14:30:00Z'
                     end-time: '2025-12-25T14:30:00Z'
                     ne-backup-status: 'FAILED'
                     retry-eligible: true
                     ne-connection-status: 'connected'
-                    error-message: 'NE not reachable'
+                    error-message: 'device not reachable'
           headers:
             x-correlator:
               $ref: '#/components/headers/x-correlator'
@@ -4239,7 +4239,7 @@ paths:
               parameters:
                 - in: query
                   name: status
-                  description: Filter by NE status
+                  description: Filter by device status
                   schema:
                     type: string
                     enum: [IDLE, ONGOING, COMPLETED, FAILED]
@@ -4272,15 +4272,15 @@ paths:
                         items:
                           type: object
                           required:
-                            - ne-id
+                            - mount-name
                             - ne-backup-status
                             - ne-connection-status
                             - start-time
                           properties:
-                            ne-id:
+                            mount-name:
                               type: string
                               description: >
-                                'NE Id'
+                                'mount name'
                             ne-backup-status:
                               type: string
                               enum: [IDLE, ONGOING, COMPLETED, FAILED]
@@ -4310,7 +4310,7 @@ paths:
                                 'The connection-status of the device (connected if, connected at the Controller; of disconnected of mounted at the Controller, but not in connected state)
                       example:
                         - job-id: 'job-1'
-                          ne-id: 'ne0001'
+                          mount-name: 'ne0001'
                           start-time: '2025-12-25T14:30:00Z'
                           end-time: '2025-12-25T14:30:00Z'
                           ne-backup-status: 'COMPLETED'
@@ -4318,19 +4318,19 @@ paths:
                           backup-file-stored-path: 'sftp://127.0.0.1/backup/'
                           ne-connection-status: 'connected'
                         - job-id: 'job-1'
-                          ne-id: 'ne0002'
+                          mount-name: 'ne0002'
                           start-time: '2025-12-25T14:30:00Z'
                           end-time: ''
                           ne-backup-status: 'ONGOING'
                           retry-eligible: false
                           ne-connection-status: 'connected'
                         - job-id: 'job-1'
-                          ne-id: 'ne0003'
+                          mount-name: 'ne0003'
                           start-time: '2025-12-25T14:30:00Z'
                           end-time: '2025-12-25T14:30:00Z'
                           ne-backup-status: 'FAILED'
                           retry-eligible: true
-                          error-message: 'NE not reachable'
+                          error-message: 'device not reachable'
                           ne-connection-status: 'connected'
                 '400':
                   $ref: '#/components/responses/responseForErroredServiceRequests'
@@ -4350,7 +4350,7 @@ paths:
                   $ref: '#/components/responses/responseForErroredServiceRequests'
                 default:
                   $ref: '#/components/responses/responseForErroredServiceRequests'
-  /v1/retry-backup-of-ne:
+  /v1/retry-backup-of-device:
       parameters:
         - $ref: '#/components/parameters/user'
         - $ref: '#/components/parameters/originator'
@@ -4358,8 +4358,8 @@ paths:
         - $ref: '#/components/parameters/trace-indicator'
         - $ref: '#/components/parameters/customer-journey'
       post:
-        operationId: retryBackupForNE
-        summary: 'Initiates authentication of the user and retries backup for specific NE'
+        operationId: retryBackupOfDevice
+        summary: 'Initiates authentication of the user and retries backup for specific device'
         tags:
           - IndividualServices
         security:
@@ -4375,19 +4375,19 @@ paths:
                 additionalProperties: false
                 required:
                   - job-id
-                  - ne-id
+                  - mount-name
                 properties:
                   job-id:
                     type: string
                     description: >
                       'Unique identifier of the backup job'
-                  ne-id:
+                  mount-name:
                     type: string
                     description: >
                       'Unique identifier of the network element'
               example:
                 job-id : "job-1"
-                ne-id : "ne0001"
+                mount-name : "ne0001"
         responses:
           '202':
             description: 'Retry Initiated'
@@ -4397,13 +4397,13 @@ paths:
                   type: object
                   required:
                     - job-id
-                    - ne-id
+                    - mount-name
                     - ne-backup-status
                   properties:
-                    ne-id:
+                    mount-name:
                       type: string
                       description: >
-                        'NE Id'
+                        'mount name'
                     job-id:
                       type: string
                       pattern: "^job-[A-Za-z0-9_-]{4,32}$"
@@ -4424,7 +4424,7 @@ paths:
                       description: Is it eligible for retry
                 example:
                   - job-id: 'job-1'
-                    ne-id: 'ne0001'
+                    mount-name: 'ne0001'
                     ne-backup-status: 'ONGOING'
                     retry-eligible: false
                     ne-connection-status: 'connected'
@@ -4571,7 +4571,7 @@ paths:
                           minProperties: 2
                           required:
                             - job-id
-                            - ne-id
+                            - mount-name
                             - ne-backup-status
                             - ne-connection-status
                             - start-time
@@ -4583,7 +4583,7 @@ paths:
                               type: string
                               description: >
                                 'Unique identifier of the backup job'
-                            ne-id:
+                            mount-name:
                               type: string
                               description: >
                                 'Unique identifier of the network element'
@@ -4616,7 +4616,7 @@ paths:
                                 'The connection-status of the device (connected if, connected at the Controller; of disconnected of mounted at the Controller, but not in connected state)
                         example:
                           job-id: 'job-1'
-                          ne-id : 'ne0001'
+                          mount-name : 'ne0001'
                           start-time: '2025-12-25T14:30:00Z'
                           end-time: ''
                           ne-backup-status: 'ONGOING'
