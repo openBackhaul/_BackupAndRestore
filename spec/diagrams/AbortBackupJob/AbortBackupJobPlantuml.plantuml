@@ -12,7 +12,7 @@ participant "Job Orchestrator" as Orchestrator
 == Abort Request ==
 
 User -> UI : Click "Abort Job"
-UI -> API : POST /v1/backup-jobs/{jobId}/abort
+UI -> API : POST /v1/abort-backup-job
 
 API -> Auth : Authorize user
 Auth --> API : Authorized

@@ -56,6 +56,7 @@ Represents a single execution of a schedule.
 
 Key fields:
 - jobId
+- jobName
 - scheduleId
 - status (PENDING/ IN_PROGRESS/ SUCCEEDED/ ABORTED/ FAILED/ PARTIAL)
 - totalNEs

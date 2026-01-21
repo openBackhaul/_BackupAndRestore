@@ -1,17 +1,17 @@
 @startuml
-title Delete Backup Schedule Flow
+title Cancel Backup Schedule Flow
 
 actor User
 participant UI
 participant "Backup API" as API
 participant "AccessAdministration" as Auth
 database "Elasticsearch\nbackup-schedules" as SchedES
-participant "Scheduler Loop" as Scheduler
+participant "Scheduler" as Scheduler
 
-== Delete Request ==
+== Cancel Request ==
 
-User -> UI : Click "Delete Schedule"
-UI -> API : DELETE /v1/backup-schedules/{scheduleId}
+User -> UI : Click "Delete Icon"
+UI -> API : POST /v1/cancel-backup-schedule
 
 API -> Auth : Authorize user
 Auth --> API : Authorized
@@ -21,7 +21,7 @@ SchedES --> API : Schedule document
 
 API -> API : Validate schedule not CANCELLED
 
-== Delete Processing ==
+== Cancel Processing ==
 
 API -> SchedES : Update schedule.status = CANCELLED
 API -> SchedES : Set fields lastModifiedByUser & lastModifiedTime & nextRunTime

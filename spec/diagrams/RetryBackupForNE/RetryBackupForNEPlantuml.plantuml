@@ -14,7 +14,7 @@ participant "ODL Controller" as ODL
 == Retry Request ==
 
 User -> UI : Click Retry on failed NE
-UI -> API : POST /backup-jobs/{jobId}/nes/{neId}/retry
+UI -> API : POST /v1/retry-backup-of-ne
 
 API -> Auth : Authenticate & authorize
 Auth --> API : OK
@@ -44,7 +44,7 @@ else Retry allowed
   Service -> ES_NE : Update NE execution
   note right of ES_NE
   {
-    status: ONGOING,
+    ne-backup-status: ONGOING,
     retryAttempts: +1,
     startTime: now(),
     endTime: null,
@@ -65,11 +65,11 @@ ODL --> Orchestrator : Backup result
 Orchestrator -> ES_NE : Update NE execution
 note right of ES_NE
 Success:
-- status: COMPLETED
+- neBackupStatus: COMPLETED
 - endTime
 
 Failure:
-- status: FAILED
+- neBackupStatus: FAILED
 - endTime
 - errorMessage
 end note

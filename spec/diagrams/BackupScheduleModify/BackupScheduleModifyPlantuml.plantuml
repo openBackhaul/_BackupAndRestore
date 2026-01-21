@@ -13,7 +13,7 @@ participant "Cron Builder" as Cron
 == Request Phase ==
 
 User -> UI : Edit backup schedule
-UI -> API : PUT /backup-schedules/{scheduleId}
+UI -> API : POST /v1/update-backup-schedule
 
 note right of API
 Request Body (Weekly Schedule Modification Example):

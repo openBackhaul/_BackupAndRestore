@@ -1,5 +1,5 @@
 @startuml
-title Monthly Backup Schedule- Flow
+title Create Backup Schedule- Flow
 
 hide footbox
 skinparam participantPadding 30
@@ -9,10 +9,11 @@ skinparam sequenceMessageAlign center
 actor User
 participant UI
 participant "Backup API Service" as API
+participant "AccessAdministration" as AA
 participant "Schedule Validator" as Validator
-participant "Cron Builder" as Cron
+participant "Recurrence/Cron Builder" as Builder
 database "Elasticsearch\n(backup-schedules)" as ES
-participant "Scheduler Loop\n(Cron Worker)" as Scheduler
+participant "Node Schedule\n(npm package)" as Scheduler
 participant "Job Orchestrator" as Orchestrator
 database "Elasticsearch\nbackup-jobs" as JobES
 database "Elasticsearch\nne-executions" as NEES
@@ -22,15 +23,27 @@ participant "kafka" as kafka
 participant "ODL Controller" as ODL
 
 
-== Schedule Creation Phase ==
-User -> UI : Enter monthly Schedule
-UI -> API : POST /v1/backup-schedule
+== Request Phase ==
+User -> UI : Enter backup schedule details
+UI -> API : POST /v1/regard-backup-schedule
+
+API -> AA : POST /v1/approve-basic-auth-request
+AA -> API : OK
 
 API -> Validator : validate request
 Validator --> API : request valid
 
-API -> Cron : build cron expression 
-Cron -> API : cron expression
+== Build Phase ==
+
+API -> Builder : Build recurrence rule
+note right of Builder
+- Convert user timezone -> UTC
+- Normalize time
+- Build RecurrenceRule / cron
+end note
+Builder -> API: Internal schedule rule
+
+== Persistence Phase ==
 
 API -> ES : Store schedule
 note right of ES
@@ -38,8 +51,7 @@ note right of ES
 scheduleId,
 scheduleName,
 serverName,
-frequency=MONTHLY,
-dayOfMonth,
+frequency,
 runAtTime,
 timezone,
 cronExpression,
@@ -60,19 +72,12 @@ API -> ES : Search schedules
 ES -> API : Schedule List
 API -> UI : Display Schedules
 
-== Runtime Scheduler Phase ==
+== In-memory Scheduling Phase ==
 
-loop every N minutes(configurable via profile)
- Scheduler -> ES : Fetch SCHEDULED schedules
- ES --> Scheduler : Schedule docs
- 
- Scheduler -> Scheduler : Convert now() to UTC
- Scheduler -> Scheduler : Match cron
- 
- alt Cron match
-    Scheduler -> Orchestrator : Trigger Job(scheduleId)
- end
-end
+API -> Scheduler: Register recurrence
+note right of Scheduler
+node-schedule job(in memory)
+end note
 
 == Job Creation Phase ==
 
@@ -141,7 +146,7 @@ end note
     end note
 
     ODL -> Orchestrator : Result(SUCCESS/FAILED)
-    Orchestrator -> Notfications : NE ID
+    Orchestrator -> Notifications : NE ID
     Notifications -> kafka : Listen to attribute value change notifications for backup and restore
     kafka -> Notifications : attribute value change notifications 
     Notifications <- Notifications : check for backup completed, ongoing notifications of that NE
@@ -161,24 +166,32 @@ note right of JobES
 }
 end note
 
+== Restart Recorvery ==
+note over API,ES
+on Application restart:
+- Load Active Schedules
+- Re-register node-schedule jobs
+end note
+
+
 == Job & execution Visibility ==
  UI -> API : /v1/list-backup-jobs-in-gui
  API -> JobES : Fetch jobs
  JobES --> API
  API --> UI : Show job list
  
- UI -> API : /v1/list-backup-job-nes-in-gui/{jobId}
+ UI -> API : /v1/list-backup-job-nes-in-gui
  API -> NEES : Fetch NE executions
  NEES -> API
  API -> UI : Show NE progress
  
 == Retry & Abort ==
 
-UI -> API : POST /v1/jobs/{jobId}/nes/{neId}/retry
+UI -> API : POST /v1/retry-backup-of-ne
 API -> NEES : Update retry metadata
 API -> Orchestrator : Retry NE backup
 
-UI -> API : /v1/jobs/{jobId}/abort
+UI -> API : /v1/abort-backup-job
 API -> JobES : Mark job Aborted
 
 @enduml
