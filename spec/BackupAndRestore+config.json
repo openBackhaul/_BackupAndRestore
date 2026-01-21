@@ -887,7 +887,7 @@
                         "layer-protocol-name": "operation-server-interface-1-0:LAYER_PROTOCOL_NAME_TYPE_OPERATION_LAYER",
                         "operation-server-interface-1-0:operation-server-interface-pac": {
                             "operation-server-interface-capability": {
-                                "operation-name": "/v1/start-ne-backup-restore-gui"
+                                "operation-name": "/v1/start-device-backup-restore-gui"
                             },
                             "operation-server-interface-configuration": {
                                 "life-cycle-state": "operation-server-interface-1-0:LIFE_CYCLE_STATE_TYPE_NOT_YET_DEFINED",
@@ -1117,7 +1117,7 @@
                         "layer-protocol-name": "operation-server-interface-1-0:LAYER_PROTOCOL_NAME_TYPE_OPERATION_LAYER",
                         "operation-server-interface-1-0:operation-server-interface-pac": {
                             "operation-server-interface-capability": {
-                                "operation-name": "/v1/list-backup-job-nes-in-gui"
+                                "operation-name": "/v1/list-devices-of-backup-job-in-gui"
                             },
                             "operation-server-interface-configuration": {
                                 "life-cycle-state": "operation-server-interface-1-0:LIFE_CYCLE_STATE_TYPE_NOT_YET_DEFINED",
@@ -1140,7 +1140,7 @@
                         "layer-protocol-name": "operation-server-interface-1-0:LAYER_PROTOCOL_NAME_TYPE_OPERATION_LAYER",
                         "operation-server-interface-1-0:operation-server-interface-pac": {
                             "operation-server-interface-capability": {
-                                "operation-name": "/v1/retry-backup-of-ne"
+                                "operation-name": "/v1/retry-backup-of-device"
                             },
                             "operation-server-interface-configuration": {
                                 "life-cycle-state": "operation-server-interface-1-0:LIFE_CYCLE_STATE_TYPE_NOT_YET_DEFINED",
