@@ -57,43 +57,49 @@ servers:
           uuid: bar-1-0-0-op-s-bs-005
           operation-key: n.a.
       individual:
-        - operation-name: /v1/start-gui
+        - operation-name: /v1/start-ne-backup-restore-gui
           uuid: bar-1-0-0-op-s-is-000
           operation-key: n.a.
         - operation-name: /v1/list-configured-server-names-in-gui
           uuid: bar-1-0-0-op-s-is-001
           operation-key: n.a.
-        - operation-name: /v1/server-configuration
+        - operation-name: /v1/regard-sftp-server-configuration
           uuid: bar-1-0-0-op-s-is-002
           operation-key: n.a.
-        - operation-name: /v1/server-configuration/{serverId}
+        - operation-name: /v1/update-sftp-server-configuration
           uuid: bar-1-0-0-op-s-is-012
           operation-key: n.a.
-        - operation-name: /v1/retrieve-server-configuration/{serverName}
+        - operation-name: /v1/retrieve-sftp-server-configuration
           uuid: bar-1-0-0-op-s-is-013
           operation-key: n.a.
-        - operation-name: /v1/backup-schedule
+        - operation-name: /v1/regard-backup-schedule
           uuid: bar-1-0-0-op-s-is-003
           operation-key: n.a.
         - operation-name: /v1/list-scheduled-backups-in-gui
           uuid: bar-1-0-0-op-s-is-004
           operation-key: n.a.
-        - operation-name: /v1/backup-schedules/{scheduleId}
+        - operation-name: /v1/retrieve-backup-schedule
           uuid: bar-1-0-0-op-s-is-005
+          operation-key: n.a.
+        - operation-name: /v1/update-backup-schedule
+          uuid: bar-1-0-0-op-s-is-014
+          operation-key: n.a.
+        - operation-name: /v1/cancel-backup-schedule
+          uuid: bar-1-0-0-op-s-is-015
           operation-key: n.a.
         - operation-name: /v1/list-backup-jobs-in-gui
           uuid: bar-1-0-0-op-s-is-006
           operation-key: n.a.
-        - operation-name: /v1/backup-jobs/{jobId}
+        - operation-name: /v1/retrieve-backup-job
           uuid: bar-1-0-0-op-s-is-007
           operation-key: n.a.
-        - operation-name: /v1/list-backup-job-nes-in-gui/{jobId}
+        - operation-name: /v1/list-backup-job-nes-in-gui
           uuid: bar-1-0-0-op-s-is-008
           operation-key: n.a.
-        - operation-name: /v1/backup-jobs/{jobId}/nes/{neId}
+        - operation-name: /v1/retry-backup-of-ne
           uuid: bar-1-0-0-op-s-is-009
           operation-key: n.a.
-        - operation-name: /v1/backup-jobs/{jobId}/abort
+        - operation-name: /v1/abort-backup-job
           uuid: bar-1-0-0-op-s-is-010
           operation-key: n.a.
         - operation-name: /v1/login

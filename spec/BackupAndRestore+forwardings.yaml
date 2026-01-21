@@ -523,7 +523,7 @@ forwardings:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForVisualizingListOfConfiguredServerNamesCauses.RetrievingListOfConfiguredServerNamesFromElasticSearch
+  - forwarding-name: GuiRequestForVisualizingListOfConfiguredServerNamesCauses.RetrievingListOfConfiguredServerNamesFromApplicationData
     uuid: bar-1-0-0-op-fc-is-002
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -538,7 +538,7 @@ forwardings:
       - client-name: ElasticSearch
         uuid: bar-1-0-0-es-c-es-1-0-0-000
   
-  - forwarding-name: GuiRequestForCreatingServerConfigurationCauses.Authentication
+  - forwarding-name: GuiRequestForRegardingSftpServerConfigurationCauses.Authentication
     uuid: bar-1-0-0-op-fc-is-003
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -547,13 +547,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/server-configuration
+      - server-name: /v1/regard-sftp-server-configuration
         uuid: bar-1-0-0-op-s-is-002
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForCreatingServerConfigurationCauses.StoringOfServerConfigurationIntoElasticSearch
+  - forwarding-name: GuiRequestForRegardingSftpServerConfigurationCauses.StoringOfSftpServerConfigurationInApplicationData
     uuid: bar-1-0-0-op-fc-is-004
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -562,13 +562,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/server-configuration
+      - server-name: /v1/regard-sftp-server-configuration
         uuid: bar-1-0-0-op-s-is-002
     consequent-requests:
       - client-name: ElasticSearch
         uuid: bar-1-0-0-es-c-es-1-0-0-000
   
-  - forwarding-name: GuiRequestForUpdatingServerConfigurationCauses.Authentication
+  - forwarding-name: GuiRequestForUpdatingSftpServerConfigurationCauses.Authentication
     uuid: bar-1-0-0-op-fc-is-005
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -577,13 +577,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/server-configuration/{server-id}
+      - server-name: /v1/update-sftp-server-configuration
         uuid: bar-1-0-0-op-s-is-012
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForUpdatingServerConfigurationCauses.StoringOfUpdatedServerConfigurationIntoElasticSearch
+  - forwarding-name: GuiRequestForUpdatingSftpServerConfigurationCauses.StoringOfUpdatedSftpServerConfigurationInApplicationData
     uuid: bar-1-0-0-op-fc-is-006
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -592,13 +592,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/server-configuration/{server-id}
+      - server-name: /v1/update-sftp-server-configuration
         uuid: bar-1-0-0-op-s-is-012
     consequent-requests:
       - client-name: ElasticSearch
         uuid: bar-1-0-0-es-c-es-1-0-0-000
 
-  - forwarding-name: GuiRequestToFetchServerConfigurationCauses.Authentication
+  - forwarding-name: GuiRequestToRetrieveSftpServerConfigurationCauses.Authentication
     uuid: bar-1-0-0-op-fc-is-007
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -607,13 +607,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/server-configuration/{server-name}
+      - server-name: /v1/retrieve-sftp-server-configuration
         uuid: bar-1-0-0-op-s-is-013
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestToFetchServerConfigurationCauses.RetrievingListOfConfiguredServerDetailsFromElasticSearch
+  - forwarding-name: GuiRequestToRetrieveSftpServerConfigurationCauses.RetrievingOfConfiguredServerDetailsFromApplicationData
     uuid: bar-1-0-0-op-fc-is-008
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -622,7 +622,7 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/server-configuration/{server-name}
+      - server-name: /v1/retrieve-sftp-server-configuration
         uuid: bar-1-0-0-op-s-is-013
     consequent-requests:
       - client-name: ElasticSearch
@@ -637,13 +637,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-schedule
+      - server-name: /v1/regard-backup-schedule
         uuid: bar-1-0-0-op-s-is-003
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestToScheduleBackupCauses.StoringOfScheduledBackupIntoElasticSearch
+  - forwarding-name: GuiRequestToScheduleBackupCauses.StoringOfScheduledBackupInApplicationData
     uuid: bar-1-0-0-op-fc-is-010
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -652,7 +652,7 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-schedule
+      - server-name: /v1/regard-backup-schedule
         uuid: bar-1-0-0-op-s-is-003
     consequent-requests:
       - client-name: ElasticSearch
@@ -673,7 +673,7 @@ forwardings:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForVisualizingListOfScheduledBackupCauses.RetrievingListOfScheduledBackupsFromElasticSearch
+  - forwarding-name: GuiRequestForVisualizingListOfScheduledBackupCauses.RetrievingListOfScheduledBackupsFromApplicationData
     uuid: bar-1-0-0-op-fc-is-012
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -697,13 +697,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-schedules/{scheduleId}
+      - server-name: /v1/retrieve-backup-schedule
         uuid: bar-1-0-0-op-s-is-005
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForFetchingScheduledBackupByIdCauses.RetrievingScheduledBackupByIdFromElasticSearch
+  - forwarding-name: GuiRequestForFetchingScheduledBackupByIdCauses.RetrievingScheduledBackupByIdFromApplicationData
     uuid: bar-1-0-0-op-fc-is-014
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -712,7 +712,7 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-schedules/{scheduleId}
+      - server-name: /v1/retrieve-backup-schedule
         uuid: bar-1-0-0-op-s-is-005
     consequent-requests:
       - client-name: ElasticSearch
@@ -727,13 +727,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-schedules/{scheduleId}
-        uuid: bar-1-0-0-op-s-is-005
+      - server-name: /v1/update-backup-schedule
+        uuid: bar-1-0-0-op-s-is-014
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForScheduledBackupModificationByIdCauses.StoringOfModifiedScheduledBackupIntoElasticSearch
+  - forwarding-name: GuiRequestForScheduledBackupModificationByIdCauses.StoringOfModifiedScheduledBackupInApplicationData
     uuid: bar-1-0-0-op-fc-is-016
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -742,8 +742,8 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-schedules/{scheduleId}
-        uuid: bar-1-0-0-op-s-is-005
+      - server-name: /v1/update-backup-schedule
+        uuid: bar-1-0-0-op-s-is-014
     consequent-requests:
       - client-name: ElasticSearch
         uuid: bar-1-0-0-es-c-es-1-0-0-001
@@ -757,13 +757,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-schedules/{scheduleId}
-        uuid: bar-1-0-0-op-s-is-005
+      - server-name: /v1/cancel-backup-schedule
+        uuid: bar-1-0-0-op-s-is-015
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForScheduledBackupCancellationByIdCauses.StoringOfCancelledScheduledBackupIntoElasticSearch
+  - forwarding-name: GuiRequestForScheduledBackupCancellationByIdCauses.StoringOfCancelledScheduledBackupInApplicationData
     uuid: bar-1-0-0-op-fc-is-018
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -772,8 +772,8 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-schedules/{scheduleId}
-        uuid: bar-1-0-0-op-s-is-005
+      - server-name: /v1/cancel-backup-schedule
+        uuid: bar-1-0-0-op-s-is-015
     consequent-requests:
       - client-name: ElasticSearch
         uuid: bar-1-0-0-es-c-es-1-0-0-001
@@ -787,8 +787,8 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name:
-        uuid:
+      - server-name: /v1/regard-backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
     consequent-requests:
       - client-name: OpenDayLight://{controllerInternalPathToMountPoint}/node={mountName}/yang-ext:mount/backup-and-restore-1-0:backup-system
         uuid: bar-1-0-0-op-c-is-odl-4-0-2-000
@@ -802,8 +802,8 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name:
-        uuid:
+      - server-name: /v1/regard-backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
     consequent-requests:
       - client-name: /v1/provide-list-of-connected-devices
         uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-000
@@ -817,8 +817,8 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name:
-        uuid:
+      - server-name: /v1/regard-backup-schedule
+        uuid: bar-1-0-0-op-s-is-003
     consequent-requests:
       - client-name: /v1/provide-device-status-metadata
         uuid: bar-1-0-0-op-c-is-mwdi-2-0-0-001
@@ -838,7 +838,7 @@ forwardings:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForVisualizingListOfBackupJobCauses.RetrievingListOfBackupJobsFromElasticSearch
+  - forwarding-name: GuiRequestForVisualizingListOfBackupJobCauses.RetrievingListOfBackupJobsFromApplicationData
     uuid: bar-1-0-0-op-fc-is-021
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -862,13 +862,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-jobs/{jobId}
+      - server-name: /v1/retrieve-backup-job
         uuid: bar-1-0-0-op-s-is-007
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForFetchingBackupJobByIdCauses.RetrievingBackupJobByIdFromElasticSearch
+  - forwarding-name: GuiRequestForFetchingBackupJobByIdCauses.RetrievingBackupJobByIdFromApplicationData
     uuid: bar-1-0-0-op-fc-is-023
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -877,7 +877,7 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-jobs/{jobId}
+      - server-name: /v1/retrieve-backup-job
         uuid: bar-1-0-0-op-s-is-007
     consequent-requests:
       - client-name: ElasticSearch
@@ -892,13 +892,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/list-backup-job-nes-in-gui/{jobId}
+      - server-name: /v1/list-backup-job-nes-in-gui
         uuid: bar-1-0-0-op-s-is-008
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForVisualizingListOfNEsInBackupJobCauses.RetrievingListOfNEsInBackupJobFromElasticSearch
+  - forwarding-name: GuiRequestForVisualizingListOfNEsInBackupJobCauses.RetrievingListOfNEsInBackupJobFromApplicationData
     uuid: bar-1-0-0-op-fc-is-025
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -907,7 +907,7 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/list-backup-job-nes-in-gui/{jobId}
+      - server-name: /v1/list-backup-job-nes-in-gui
         uuid: bar-1-0-0-op-s-is-008
     consequent-requests:
       - client-name: ElasticSearch
@@ -922,13 +922,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-jobs/{jobId}/nes/{neId}
+      - server-name: /v1/retry-backup-of-ne
         uuid: bar-1-0-0-op-s-is-009
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestForRetryBackupForNECauses.StoringInitiationOfRetryBackupIntoElasticSearch
+  - forwarding-name: GuiRequestForRetryBackupForNECauses.StoringInitiationOfRetryBackupInApplicationData
     uuid: bar-1-0-0-op-fc-is-027
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -937,7 +937,7 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-jobs/{jobId}/nes/{neId}
+      - server-name: /v1/retry-backup-of-ne
         uuid: bar-1-0-0-op-s-is-009
     consequent-requests:
       - client-name: ElasticSearch
@@ -952,13 +952,13 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-jobs/{jobId}/abort
+      - server-name: /v1/abort-backup-job
         uuid: bar-1-0-0-op-s-is-010
     consequent-requests:
       - client-name: AA://v1/approve-basic-auth-request
         uuid: bar-1-0-0-op-c-bs-aa-2-1-2-000
 
-  - forwarding-name: GuiRequestToAbortBackupJobByIdCauses.AbortingBackupJobByIdInElasticSearch
+  - forwarding-name: GuiRequestToAbortBackupJobByIdCauses.AbortingBackupJobByIdInApplicationData
     uuid: bar-1-0-0-op-fc-is-029
     forwarding-type: InvariantProcessSnippet
     management-requests:
@@ -967,7 +967,7 @@ forwardings:
       fc-port-deletion:
       operation-client-deletion:
     initiating-requests:
-      - server-name: /v1/backup-jobs/{jobId}/abort
+      - server-name: /v1/abort-backup-job
         uuid: bar-1-0-0-op-s-is-010
     consequent-requests:
       - client-name: ElasticSearch
