@@ -1,0 +1,227 @@
+/* Telefonica Brand Colors Theme */
+:root {
+  /* Primary Telefonica Colors - Exact Match */
+  --telefonica-blue: #0067FF;
+  --telefonica-blue-dark: #0052CC;
+  --telefonica-blue-light: #4D94FF;
+  --telefonica-blue-lighter: #E6F0FF;
+  --telefonica-white: #FFFFFF;
+  
+  /* Supporting Colors */
+  --telefonica-gray-dark: #2C2C2C;
+  --telefonica-gray-medium: #666666;
+  --telefonica-gray-light: #E0E0E0;
+  --telefonica-gray-lighter: #F8F9FA;
+  
+  /* Status Colors */
+  --telefonica-success: #0067FF;
+  --telefonica-warning: #0067FF;
+  --telefonica-danger: #D32F2F;
+  --telefonica-info: #0067FF;
+  
+  /* UI Element Colors */
+  --nav-bg: var(--telefonica-white);
+  --nav-border: var(--telefonica-blue);
+  --sidebar-bg: var(--telefonica-blue);
+  --sidebar-hover: var(--telefonica-blue-dark);
+  --sidebar-active: var(--telefonica-blue-dark);
+  --content-bg: var(--telefonica-white);
+  --card-bg: var(--telefonica-white);
+  --text-primary: var(--telefonica-gray-dark);
+  --text-secondary: var(--telefonica-gray-medium);
+  
+  /* Button Colors */
+  --btn-primary-bg: var(--telefonica-blue);
+  --btn-primary-hover: var(--telefonica-blue-dark);
+  --btn-success-bg: var(--telefonica-blue);
+  --btn-success-hover: var(--telefonica-blue-dark);
+}
+
+/* Global Overrides */
+body {
+  color: var(--text-primary);
+  background-color: var(--telefonica-white);
+}
+
+/* Bootstrap Primary Color Override */
+.btn-primary {
+  background-color: #0067FF !important;
+  border-color: #0067FF !important;
+  color: white !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #0052CC !important;
+  border-color: #0052CC !important;
+  color: white !important;
+}
+
+.btn-outline-primary {
+  color: #0067FF !important;
+  border-color: #0067FF !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0067FF !important;
+  border-color: #0067FF !important;
+  color: white !important;
+}
+
+.btn-success {
+  background-color: #0067FF !important;
+  border-color: #0067FF !important;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  background-color: #0052CC !important;
+  border-color: #0052CC !important;
+}
+
+.bg-primary {
+  background-color: #0067FF !important;
+}
+
+.text-primary {
+  color: #0067FF !important;
+}
+
+.badge.bg-primary {
+  background-color: #0067FF !important;
+}
+
+.badge.bg-success {
+  background-color: #0067FF !important;
+}
+
+/* Links */
+a {
+  color: #0067FF;
+}
+
+a:hover {
+  color: #0052CC;
+}
+
+/* Cards */
+.card {
+  border-color: #E6F0FF;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 103, 255, 0.1);
+}
+
+.card-header {
+  background-color: #FFFFFF;
+  border-bottom: 2px solid #0067FF;
+  color: #0067FF;
+  font-weight: 600;
+}
+
+.card-header.bg-primary {
+  background-color: #0067FF !important;
+  color: white !important;
+  border-bottom: none;
+}
+
+.card-header.bg-light {
+  background-color: #E6F0FF !important;
+  color: #0067FF !important;
+  border-bottom: 2px solid #0067FF;
+}
+
+/* Tables */
+.table {
+  background-color: white;
+}
+
+.table thead {
+  background-color: #E6F0FF;
+  color: #0067FF;
+  font-weight: 600;
+}
+
+.table thead th {
+  border-bottom: 2px solid #0067FF;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #F8FBFF;
+}
+
+/* Form Controls */
+.form-control:focus,
+.form-select:focus {
+  border-color: #0067FF;
+  box-shadow: 0 0 0 0.2rem rgba(0, 103, 255, 0.25);
+}
+
+.form-label {
+  color: var(--telefonica-gray-dark);
+  font-weight: 500;
+}
+
+/* Progress Bars */
+.progress {
+  background-color: #E6F0FF;
+}
+
+.progress-bar {
+  background-color: #0067FF;
+}
+
+.progress-bar.bg-success {
+  background-color: #0067FF !important;
+}
+
+/* Alerts */
+.alert-info {
+  background-color: #E6F0FF;
+  border-color: #0067FF;
+  color: #0052CC;
+}
+
+.alert-primary {
+  background-color: #E6F0FF;
+  border-color: #0067FF;
+  color: #0052CC;
+}
+
+/* Modals */
+.modal-header {
+  background-color: #0067FF;
+  color: white;
+  border-bottom: none;
+}
+
+.modal-header .btn-close {
+  filter: brightness(0) invert(1);
+}
+
+/* Dropdowns */
+.dropdown-menu {
+  border-color: #0067FF;
+}
+
+.dropdown-item:hover {
+  background-color: #E6F0FF;
+  color: #0067FF;
+}
+
+/* Pagination */
+.pagination .page-link {
+  color: #0067FF;
+  border-color: #E6F0FF;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #0067FF;
+  border-color: #0067FF;
+}
+
+.pagination .page-link:hover {
+  background-color: #E6F0FF;
+  color: #0052CC;
+}

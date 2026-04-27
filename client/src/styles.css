@@ -1,0 +1,44 @@
+/* src/styles.css - add more later */
+body {
+    background: #f6f8fb;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 64px;
+    transition: width .2s;
+    background: #0b2b3a;
+    color: #fff;
+}
+
+.sidebar.collapsed {
+    width: 64px;
+}
+
+.sidebar.expanded {
+    width: 220px;
+}
+
+.main {
+    flex: 1;
+    padding: 1rem;
+}
+
+.topbar {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background: #fff;
+    border-bottom: 1px solid #e6e9ee;
+}
+
+.readonly-field {
+    background: #e9ecef;
+}

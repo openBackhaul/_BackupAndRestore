@@ -1,0 +1,278 @@
+/* container */
+.dashboard-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOP NAV */
+.shared-topnav,
+.top-nav {
+  height: 65px;
+  background: #ffffff;
+  border-bottom: 3px solid #0067ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 103, 255, 0.1);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0067ff;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-right: 6px;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.avatar-btn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.avatar-icon {
+  color: #0067ff;
+  font-size: 1.8rem;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 12px 14px;
+  min-width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 20;
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-email {
+  font-size: 0.85rem;
+  color: #555;
+  word-break: break-all;
+}
+
+.main-layout {
+  display: flex;
+  height: calc(100vh - 65px);
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: #0067ff;
+  color: white;
+  height: 100%;
+  transition: width 0.25s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0, 103, 255, 0.15);
+}
+
+.sidebar.expanded {
+  width: 200px;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar-header {
+  padding: 0.9rem 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: auto;
+}
+
+.toggle-icon {
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.menu-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.menu-list li:hover {
+  background: #0052cc;
+  border-left: 0;
+  padding-left: 15px;
+}
+
+.menu-list li.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.menu-list li.active {
+  background: #0052cc;
+  border-left: 0;
+  padding-left: 15px;
+  font-weight: 600;
+}
+
+.content-area {
+  flex: 1;
+  background: #ffffff;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.content-area.sidebar-collapsed {
+  padding-left: 1rem;
+}
+
+.signout-btn {
+  margin-left: 8px;
+}
+
+.profile-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Validation Modal Styles */
+.validation-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.validation-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.validation-step.loading {
+  background-color: #e7f3ff;
+  border-left: 4px solid #0d6efd;
+}
+
+.validation-step.success {
+  background-color: #d1f2eb;
+  border-left: 4px solid #198754;
+}
+
+.validation-step.failed {
+  background-color: #f8d7da;
+  border-left: 4px solid #dc3545;
+}
+
+.step-icon {
+  font-size: 1.5rem;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #212529;
+}
+
+.step-message {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.validation-step.failed .step-message {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+.validation-step.success .step-message {
+  color: #198754;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
