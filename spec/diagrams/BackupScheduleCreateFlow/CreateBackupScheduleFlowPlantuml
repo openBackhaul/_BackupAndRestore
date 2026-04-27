@@ -1,0 +1,197 @@
+@startuml
+title Create Backup Schedule- Flow
+
+hide footbox
+skinparam participantPadding 30
+skinparam sequenceMessageAlign center
+
+
+actor User
+participant UI
+participant "Backup API Service" as API
+participant "AccessAdministration" as AA
+participant "Schedule Validator" as Validator
+participant "Recurrence/Cron Builder" as Builder
+database "Elasticsearch\n(backup-schedules)" as ES
+participant "Node Schedule\n(npm package)" as Scheduler
+participant "Job Orchestrator" as Orchestrator
+database "Elasticsearch\nbackup-jobs" as JobES
+database "Elasticsearch\nne-executions" as NEES
+participant "MWDI" as MWDI
+participant "Notifications" as Notifications
+participant "kafka" as kafka
+participant "ODL Controller" as ODL
+
+
+== Request Phase ==
+User -> UI : Enter backup schedule details
+UI -> API : POST /v1/regard-backup-schedule
+
+API -> AA : POST /v1/approve-basic-auth-request
+AA -> API : OK
+
+API -> Validator : validate request
+Validator --> API : request valid
+
+== Build Phase ==
+
+API -> Builder : Build recurrence rule
+note right of Builder
+- Convert user timezone -> UTC
+- Normalize time
+- Build RecurrenceRule / cron
+end note
+Builder -> API: Internal schedule rule
+
+== Persistence Phase ==
+
+API -> ES : Store schedule
+note right of ES
+{
+scheduleId,
+scheduleName,
+serverName,
+frequency,
+runAtTime,
+timezone,
+cronExpression,
+status,
+createdTime,
+status,
+createdByUser,
+nextRunTime
+}
+end note
+
+ES --> API : 201 Created
+API --> UI : Schedule created
+
+== Schedule Listing / UI Refresh ==
+UI -> API: /v1/list-scheduled-backups-in-gui
+API -> ES : Search schedules
+ES -> API : Schedule List
+API -> UI : Display Schedules
+
+== In-memory Scheduling Phase ==
+
+API -> Scheduler: Register recurrence
+note right of Scheduler
+node-schedule job(in memory)
+end note
+
+== Job Creation Phase ==
+
+Orchestrator -> MWDI:/v1/provide-list-of-connected-devices
+MWDI -> Orchestrator : Connected Devices List
+Orchestrator -> MWDI:/v1/provide-device-status-metadata
+note right of Orchestrator
+{
+ mount-name-list : []
+}
+end note
+MWDI -> Orchestrator: metadata of the conneced devices
+Orchestrator -> Orchestrator : Filter eligible devices
+
+note right of Orchestrator
+Filter:
+ - vendor
+ - model
+end note
+
+Orchestrator -> JobES: Create backup job
+
+note right of JobES
+{
+jobId,
+scheduleId,
+vendor,
+model,
+totalNEs,
+succeededNEs,
+failedNEs,
+abortedNEs,
+status,
+startTime,
+endTime,
+jobCreatedTime,
+jobUpdatedTime
+}
+end note
+
+Orchestrator -> NEES : Create device execution entries
+note right of NEES
+{
+ neId,
+ jobId,
+ status,
+ startTime,
+ retryEligible,
+ retryCount
+}
+end note
+
+== Device Execution ==
+ loop for each device
+    Orchestrator -> ODL: /rests/operations/network-topology:network-topology/topology=topology-netconf/node=<nodename>/yang-ext:mount/backup-and-restore-1-0:backup-system
+
+    note right of Orchestrator
+    {
+       "destination-uri": "<sftp://path>",
+       "filename": "<filename>",
+       "username-at-file-server": "<username>",
+       "password-at-file-server": "<password>",
+       "ssh-key": "",
+       "force-upload": true
+    }
+    end note
+
+    ODL -> Orchestrator : Result(SUCCESS/FAILED)
+    Orchestrator -> Notifications : mount name
+    Notifications -> kafka : Listen to attribute value change notifications for backup and restore
+    kafka -> Notifications : attribute value change notifications 
+    Notifications <- Notifications : check for backup completed, ongoing notifications of that device
+    Notifications -> Orchestrator : status
+    Orchestrator -> NEES : Update device status
+ end
+
+== Job Completion ==
+
+Orchestrator -> JobES : Update job status
+note right of JobES
+{
+ status: SUCCEEDED/FAILED,
+ backupFileStoredPath,
+ errorMessage,
+ endTime
+}
+end note
+
+== Restart Recorvery ==
+note over API,ES
+on Application restart:
+- Load Active Schedules
+- Re-register node-schedule jobs
+end note
+
+
+== Job & execution Visibility ==
+ UI -> API : /v1/list-backup-jobs-in-gui
+ API -> JobES : Fetch jobs
+ JobES --> API
+ API --> UI : Show job list
+ 
+ UI -> API : /v1/list-devices-of-backup-job-in-gui
+ API -> NEES : Fetch device executions
+ NEES -> API
+ API -> UI : Show device progress
+ 
+== Retry & Abort ==
+
+UI -> API : POST /v1/retry-backup-of-device
+API -> NEES : Update retry metadata
+API -> Orchestrator : Retry device backup
+
+UI -> API : /v1/abort-backup-job
+API -> JobES : Mark job Aborted
+
+@enduml

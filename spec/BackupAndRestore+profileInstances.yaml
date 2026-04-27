@@ -1,0 +1,366 @@
+profile-instances:
+  - profile-name: "ActionProfile"
+    uuid: "bar-1-0-1-action-p-000"
+    capability:
+      operation-name: "/v1/start-application-in-generic-representation"
+      label: "Inform about Application"
+      display-in-new-browser-window: false
+      input-value-list: []
+    configuration:
+      consequent-operation-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-op-s-bs-002/layer-protocol=0/operation-server-interface-1-0:operation-server-interface-pac/operation-server-interface-capability/operation-name"
+
+  - profile-name: "ActionProfile"
+    uuid: "bar-1-0-1-action-p-001"
+    capability:
+      operation-name: "/v1/inform-about-application-in-generic-representation"
+      label: "Release History"
+      display-in-new-browser-window: false
+    configuration:
+      consequent-operation-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-op-s-bs-004/layer-protocol=0/operation-server-interface-1-0:operation-server-interface-pac/operation-server-interface-capability/operation-name"
+
+  - profile-name: "ActionProfile"
+    uuid: "bar-1-0-1-action-p-002"
+    capability:
+      operation-name: "/v1/inform-about-application-in-generic-representation"
+      label: "API Documentation"
+      display-in-new-browser-window: true
+    configuration:
+      consequent-operation-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-op-s-bs-005/layer-protocol=0/operation-server-interface-1-0:operation-server-interface-pac/operation-server-interface-capability/operation-name"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-000"
+    capability:
+      operation-name: "/v1/start-application-in-generic-representation"
+      static-field-name: "applicationName"
+      description: "Own application name"
+      datatype: "string"
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/application-name"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-001"
+    capability:
+      operation-name: "/v1/inform-about-application-in-generic-representation"
+      static-field-name: "applicationName"
+      description: "Name of this application"
+      datatype: "string"
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/application-name"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-002"
+    capability:
+      operation-name: "/v1/inform-about-application-in-generic-representation"
+      static-field-name: "releaseNumber"
+      description: "Number of this release"
+      datatype: "string"
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/release-number"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-003"
+    capability:
+      operation-name: "/v1/inform-about-application-in-generic-representation"
+      static-field-name: "applicationPurpose"
+      description: "Purpose of this application"
+      datatype: "string"
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/application-purpose"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-004"
+    capability:
+      operation-name: "/v1/inform-about-application-in-generic-representation"
+      static-field-name: "dataUpdatePeriod"
+      description: "Period of updating the data inside this application"
+      datatype: "string"
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/data-update-period"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-005"
+    capability:
+      operation-name: "/v1/inform-about-application-in-generic-representation"
+      static-field-name: "ownerName"
+      description: "Name of the ApplicationOwner"
+      datatype: "string"
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/owner-name"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-006"
+    capability:
+      operation-name: "/v1/inform-about-application-in-generic-representation"
+      static-field-name: "ownerEmailAddress"
+      description: "Email address of the ApplicationOwner"
+      datatype: "string"
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/owner-email-address"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-007"
+    capability:
+      operation-name: "/v1/inform-about-release-history-in-generic-representation"
+      field-name-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/release-list=0/release-number"
+      description: "Represents the first entry in the list of releases"
+      datatype: string
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/release-list=0/changes"
+
+  - profile-name: "GenericResponseProfile"
+    uuid: "bar-1-0-1-response-p-008"
+    capability:
+      operation-name: "/v1/inform-about-release-history-in-generic-representation"
+      field-name-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/release-list=1/release-number"
+      description: "Represents the second entry in the list of releases"
+      datatype: string
+    configuration:
+      value-reference: "/core-model-1-4:control-construct/logical-termination-point=bar-1-0-1-http-s-000/layer-protocol=0/http-server-interface-1-0:http-server-interface-pac/http-server-interface-capability/release-list=1/changes"
+
+  - profile-name: "FileProfile"
+    uuid: "bar-1-0-1-file-p-000"
+    capability:
+      file-identifier: "EncryptedOdlKey"
+      file-description: "Authorization key for OpenDayLight"
+    configuration:
+      file-name: "encrypted-odl-key.json"
+      operation: "read"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-000"
+    capability:
+      string-name: "controllerInternalPathToMountPoint"
+    configuration:
+      string-value: "/rests/operations/network-topology:network-topology/topology=topology-netconf"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-020"
+    capability:
+      string-name: "controllerInternalDataPathToMountPoint"
+    configuration:
+      string-value: "/rests/data/network-topology:network-topology/topology=topology-netconf"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-001"
+    capability:
+      string-name: "huaweiFileExtensionForBackupAndRestore"
+    configuration:
+      string-value: ".pkg"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-002"
+    capability:
+      string-name: "siaeFileExtensionForBackupAndRestore"
+    configuration:
+      string-value: ".dwl"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-003"
+    capability:
+      string-name: "ericssonFileExtensionForBackupAndRestore"
+    configuration:
+      string-value: ".dwl"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-004"
+    capability:
+      string-name: "ericssonMediatorDestinationUrl"
+      purpose: "To specify the ericsson mediator destination uri to store backup file"
+      pattern: '^^sftp:\/\/(?:\d{1,3}\.){3}\d{1,3}:\d{1,5}\/tn_backup_configuration$'
+    configuration:
+      string-value: "sftp://127.0.0.1:22/tn_backup_configuration"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-005"
+    capability:
+      string-name: "ericssonMediatorUserName"
+    configuration:
+      string-value: "UserName"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-006"
+    capability:
+      string-name: "ericssonMediatorPassword"
+    configuration:
+      string-value: "Password"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-007"
+    capability:
+      string-name: "ericssonMediatorSshKey"
+    configuration:
+      string-value: "sshkey"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-008"
+    capability:
+      string-name: "siaeMediatorDestinationUrl"
+      purpose: "To specify the siae mediator destination uri to store backup file"
+      pattern: '^sftp:\/\/(?:\d{1,3}\.){3}\d{1,3}:\d{1,5}\/\/(?:\/[A-Za-z0-9._-]+\/)*[A-Za-z0-9._-]+'
+    configuration:
+      string-value: "sftp://127.0.0.1:22/backupFolderName"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-009"
+    capability:
+      string-name: "siaeMediatorUserName"
+    configuration:
+      string-value: "UserName"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-010"
+    capability:
+      string-name: "siaeMediatorPassword"
+    configuration:
+      string-value: "Password"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-011"
+    capability:
+      string-name: "siaeMediatorSshKey"
+    configuration:
+      string-value: "sshkey"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-012"
+    capability:
+      string-name: "minute"
+      purpose: 'Defines which minute (0–59) the job should run.
+        To run at 2:00 AM, set minute: "0".
+        If you want it every minute, set minute: "*".'
+    configuration:
+      string-value: "0"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-013"
+    capability:
+      string-name: "hour"
+      purpose: 'Defines which hour (0–23) the job should run.
+        To run at 2:00 AM, set hour: "2".
+        If you want it every hour, set hour: "*".'
+    configuration:
+      string-value: "2"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-014"
+    capability:
+      string-name: "dayOfMonth"
+      purpose: 'Defines which day of the month (1–31) the job should run.
+        To run every day, set dayOfMonth: "*".
+        If you want it only on a specific day, enter that number (e.g., "1").'
+    configuration:
+      string-value: "*"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-015"
+    capability:
+      string-name: "month"
+      purpose: 'Defines which month (1–12) the job should run.
+        To run every month, set month: "*".
+        If you want it only in a specific month, enter that number (e.g., "1" for January).'
+    configuration:
+      string-value: "*"
+
+  - profile-name: "StringProfile"
+    uuid: "bar-1-0-1-string-p-016"
+    capability:
+      string-name: "dayOfWeek"
+    purpose: 'Defines which day of the week (0–6, Sunday=0) the job should run.
+      To run on all days, set dayOfWeek: "*".
+      If you want it only on a specific day, enter that number (e.g., "1" for Monday).'
+    configuration:
+      string-value: "*"
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-000"
+    capability:
+      integer-name: "retryAttempt"
+      purpose: "No of retry attempt in case NE backup failure"
+      minimum: 1
+      maximum: 3
+    configuration:
+      integer-value: 3
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-001"
+    capability:
+      integer-name: "backupBatchExecutionCount"
+      purpose: "No of devices where backup can be executed in batches"
+    configuration:
+      integer-value: 3
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-002"
+    capability:
+      integer-name: "backupsToBeRetained"
+      purpose: "No of backups to be maintained"
+      minimum: 1
+      maximum: 5
+    configuration:
+      integer-value: 5
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-003"
+    capability:
+      integer-name: "filterDuplicateDevicesInHrs"
+      purpose: "Number of hours within which backups for the same device is not done if earlier backup is `COMPLETED`"
+      unit: hour
+      minimum: 2
+      maximum: 24
+    configuration:
+      integer-value: 2
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-004"
+    capability:
+      integer-name: "scheduleDeduplicationInHrs"
+      purpose: "Number of hours within which backups for the same set of devices are not rescheduled."
+      unit: hour
+      minimum: 1
+      maximum: 24
+    configuration:
+      integer-value: 1
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-005"
+    capability:
+      integer-name: "catchUpWindow"
+      purpose: "If a scheduled fire time happened during downtime, catch up if within this window"
+      unit: minute
+      minimum: 5
+      maximum: 30
+    configuration:
+      integer-value: 10
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-006"
+    capability:
+      integer-name: "stalePendingAge"
+      purpose: "Consider a PENDING job `stale` if older than this threshold and kick off NE pipeline"
+      unit: minute
+      minimum: 5
+      maximum: 30
+    configuration:
+      integer-value: 5
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-007"
+    capability:
+      integer-name: "BackupTimeOut"
+      purpose: "Mark Backup as `FAILED` if it is not completed within this time frame"
+      unit: minute
+      minimum: 10
+      maximum: 20
+    configuration:
+      integer-value: 10
+
+  - profile-name: "IntegerProfile"
+    uuid: "bar-1-0-1-integer-p-008"
+    capability:
+      integer-name: "RestoreTimeOut"
+      purpose: "Mark Restore as `FAILED` if it is not completed within this time frame"
+      unit: hours
+      minimum: 1
+      maximum: 3
+    configuration:
+      integer-value: 1

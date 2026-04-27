@@ -1,0 +1,98 @@
+@startuml
+title Modify Backup Schedule – Flow
+
+actor User
+participant UI
+participant "AccessAdministration" as Auth
+participant "Backup API" as API
+participant "OpenAPI Validator" as OAV
+participant "Schedule Service" as Service
+database "Elasticsearch\nbackup-schedules" as ES
+participant "Cron Builder" as Cron
+
+== Request Phase ==
+
+User -> UI : Edit backup schedule
+UI -> API : POST /v1/update-backup-schedule
+
+note right of API
+Request Body (Weekly Schedule Modification Example):
+{
+  "runAtTime": "02:00",
+  "dayOfWeek": "SUN",
+  "timezone": "Asia/Kolkata"
+  "forceUpload": true
+}
+NOTE: frequency NOT editable
+end note
+
+API -> Auth : Authenticate & Authorize
+Auth --> API : OK
+
+API -> OAV : Schema validation
+OAV --> API : Valid
+
+== Fetch Existing Schedule ==
+
+API -> ES : Get schedule by scheduleId
+ES --> API : Existing schedule
+
+== Semantic Validation ==
+
+API -> Service : Compare identity fields
+
+note right of Service
+Identity fields:
+- runAtTime / runOnceAt
+- dayOfWeek / dayOfMonth
+end note
+
+== Conditional Deduplication ==
+
+alt Identity fields changed
+  Service -> ES : Search duplicate schedules
+  note right of ES
+  scheduleId != current
+  frequency = same
+  identity fields = updated values
+  end note
+
+  alt Duplicate found
+    Service --> API : Conflict detected
+    API --> UI : DUPLICATE_SCHEDULE
+    note right of UI
+    Flow terminates due to conflict
+    end note
+  else
+    Service -> Cron : Rebuild cron expression
+    Cron --> Service : New cron
+  end
+
+else
+  note right of Service
+  Identity fields unchanged.
+  Deduplication skipped.
+  Cron not rebuilt.
+  end note
+end
+
+== Update Phase ==
+
+Service -> ES : Update schedule document
+note right of ES
+Updated fields:
+- runAtTime(incase of frequency DAILY,WEEKLY,MONTHLY) / runOnceAt(incase of frequency ONCE)
+- dayOfWeek(incase of frequency WEEKLY) / dayOfMonth((incase of frequency MONTHLY))
+- timezone
+- cronExpression (if rebuilt)
+- lastModifiedTime (UTC)
+- lastModifiedByUser
+- nextRunTime
+- forceUpload
+end note
+
+ES --> Service : Updated
+Service --> API : Success
+API --> UI : 200 OK (Updated schedule)
+
+@enduml
