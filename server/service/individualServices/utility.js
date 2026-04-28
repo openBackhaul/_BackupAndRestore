@@ -12,6 +12,7 @@ const createHttpError = require('http-errors');
 const ExecutionAndTraceService = require('onf-core-model-ap/applicationPattern/services/ExecutionAndTraceService');
 const ProfileCollection = require('onf-core-model-ap/applicationPattern/onfModel/models/ProfileCollection');
 const restClient = require('onf-core-model-ap/applicationPattern/rest/client/Client');
+const crypto = require('crypto');
 
 /**
  * Helper method, creates Javascript array from Elasticsearch response.

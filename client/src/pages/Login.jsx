@@ -5,6 +5,7 @@ import telefonicaLogo from "../assets/telefonica-logo.jpg";
 import "../styles/login.css";
 import backendApi from "../services/backendApi.js"
 import { authUtils } from "../utils/authUtils.js";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function Login() {
       },
       user: username,
       originator: 'BackupAndRestore',
-      xCorrelator: crypto.randomUUID(),
+      xCorrelator: uuidv4(),
       traceIndicator: '1.0',
       customerJourney: 'login'
     };

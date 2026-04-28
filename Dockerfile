@@ -1,13 +1,17 @@
 FROM node:18
 
 # Create app directory
-WORKDIR /home/openbackhaul/backupAndRestore/
+WORKDIR /home/openbackhaul/backupAndRestore
+
+#Proxy config
+ARG HTTP_PROXY
+ARG HTTPS_PROXY
 
 # Bundle app source
 COPY . .
 
 # Install npm packages for client & Create build for react application
-RUN cd ./client && npm ci --only=production && npm run build
+RUN cd ./client && npm ci && npm run build
 
 # Install npm packages for server
 RUN cd ./server && npm ci --only=production

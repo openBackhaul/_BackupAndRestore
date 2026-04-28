@@ -3,6 +3,7 @@
  * Centralized authentication and authorization management
  * Handles credential storage, session management, and API headers
  */
+import { v4 as uuidv4 } from "uuid";
 
 const authUtils = {
   /**
@@ -127,7 +128,7 @@ const authUtils = {
       Authorization: `Basic ${basicAuth}`,
       user: username,
       originator: "BackupAndRestore",
-      xCorrelator: crypto.randomUUID(),
+      xCorrelator: uuidv4(),
       traceIndicator: "1.0",
       customerJourney,
     };
